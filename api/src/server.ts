@@ -41,11 +41,12 @@ app.use(cors(corsOptions));
 app.use(express.urlencoded());
 app.use(express.json());
 
-app.get("/api/welcome", (req: Request, res: Response) => {
+app.get("/api/hey", (req: Request, res: Response) => {
   return res.status(200).json({
     message: "Welcome to our API !",
   });
 });
+app.use("/api/auth", require("./routes/auth.routes"));
 
 app.listen(process.env.PORT || 8080, async () => {
   await connectToDB();

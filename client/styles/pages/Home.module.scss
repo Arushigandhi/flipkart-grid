@@ -1,0 +1,32 @@
+@import "../variables";
+
+.container {
+  // font-family: $font-cera;
+  .width {
+    width: 80%;
+    margin: 0 auto;
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      p {
+        font-size: 1.5rem;
+        font-weight: 300;
+        margin-top: 0;
+        padding-top: 0;
+        color: rgb(150, 150, 150);
+      }
+    }
+    .heading {
+      margin-bottom: 2rem;
+      font-weight: 500;
+      font-size: 1.8rem;
+    }
+
+    .categories {
+      justify-content: space-between;
+    }
+  }
+}

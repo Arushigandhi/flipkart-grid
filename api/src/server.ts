@@ -47,6 +47,7 @@ app.get("/api/hey", (req: Request, res: Response) => {
   });
 });
 app.use("/api/auth", require("./routes/auth.routes"));
+app.use("/api/product", require("./routes/product.routes"));
 
 app.listen(process.env.PORT || 8080, async () => {
   await connectToDB();

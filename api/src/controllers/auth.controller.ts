@@ -1,9 +1,16 @@
-const UserModel = require("../models/user.model");
-const jwt = require("jsonwebtoken");
-import { Request, Response } from "express";
+import UserModel from "../models/user.model";
+import jwt from "jsonwebtoken";
+import { Request, Response, NextFunction } from "express";
+require("dotenv").config();
 
 export const signIn = async (req: Request, res: Response) => {
   try {
+    const jwtHash = process.env.JWT_TOKEN_USER;
+    if(!jwtHash) {
+      return res.status(400).json({
+        message: "JWT_TOKEN_USER is not defined in .env file"
+      });
+    }
     const { email, password } = req.body;
     if (!email || !password) {
       return res.status(400).json({
@@ -11,12 +18,16 @@ export const signIn = async (req: Request, res: Response) => {
         message: "Required values not provided!",
       });
     }
-
-    let jwtHash = process.env.JWT_TOKEN_USER;
     const user = await UserModel.findOne({
       email,
       verified: true,
     });
+    if (!user) {
+      return res.status(400).json({
+        success: false,
+        message: "User not found!",
+      });
+    }
     const check = await user.MatchPassword(password);
     if (!check) {
       return res.status(400).json({
@@ -24,16 +35,16 @@ export const signIn = async (req: Request, res: Response) => {
         message: "Unknown server error!",
       });
     }
-
-    // const userData = await user.GetUserData();
-    const token = jwt.sign(user.toJSON(), jwtHash, {
-      expiresIn: "10h",
-    });
+    const payload = {
+      user: {
+        id: user.id,
+      },
+    };
+    const token = jwt.sign(payload, jwtHash, { expiresIn: 360000 });
     return res.status(200).json({
       success: true,
       user,
       token,
-      //   userData: userData,
     });
   } catch (err) {
     console.log("ERROR");
@@ -45,7 +56,11 @@ export const signIn = async (req: Request, res: Response) => {
   }
 };
 
-export const signUp = async (req: Request, res: Response) => {
+export const signUp = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const { email } = req.body;
 
@@ -53,7 +68,7 @@ export const signUp = async (req: Request, res: Response) => {
       email,
     });
 
-    if (emailCheck && emailCheck.length !== 0) {
+    if (emailCheck && emailCheck.email.length !== 0) {
       return res.status(400).json({
         success: false,
         message: "Email already exists!",

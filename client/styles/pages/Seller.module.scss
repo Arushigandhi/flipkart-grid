@@ -1,0 +1,26 @@
+@import "../variables";
+
+.container {
+  .width {
+    padding-top: 5rem;
+    width: 40%;
+    margin: 0 auto;
+    .formItem {
+      margin-top: 2.5rem;
+      //   border-color: rgb(180, 180, 180);
+      border: none;
+    }
+    .formInput {
+      height: 3rem;
+      border-color: rgb(199, 199, 199);
+    }
+    :global {
+      .ant-input-number {
+        width: 100%;
+      }
+      .ant-select-selector {
+        height: 3rem;
+      }
+    }
+  }
+}

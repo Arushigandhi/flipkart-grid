@@ -7,10 +7,11 @@ export interface UserDoc extends mongoose.Document {
   email: string;
   password: string;
   phoneNumber: string;
-  seller: boolean;
+  isSeller: boolean;
+  MatchPassword(password: string): boolean;
 }
 
-const UserSchema = new mongoose.Schema({
+const UserSchema = new mongoose.Schema<UserDoc>({
   firstName: {
     type: String,
     required: true,
@@ -32,7 +33,7 @@ const UserSchema = new mongoose.Schema({
   phoneNumber: {
     type: String,
   },
-  seller: {
+  isSeller: {
     type: Boolean,
     default: false,
   },
@@ -47,16 +48,8 @@ UserSchema.pre<UserDoc>("save", async function (next) {
 
 UserSchema.methods.MatchPassword = async function (password: string) {
   const user = this as UserDoc;
-  return await bcrypt.compareSync(password, user.password);
+  let isValid = await bcrypt.compare(password, user.password);
+  return isValid;
 };
 
-// export default mongoose.model<UserDoc>("User", UserSchema);
-module.exports = mongoose.model("user", UserSchema);
-// {
-//     "firstName": "arushi",
-//     "lastName":"gandhi",
-//     "email":"arushi.gandhi@gmail.com",
-//     "password":"arushig02",
-//     "phoneNumber":"9323017320",
-//     "seller":"false"
-// }
+export default mongoose.model<UserDoc>("User", UserSchema);

@@ -1,0 +1,202 @@
+@import "../variables";
+
+.navbarContainer {
+  height: 80px;
+  background-color: rgba(#fff, 0.5);
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 99;
+  transition: all 0.4s ease;
+  padding: 0rem;
+  // box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(10px);
+  // filter: drop-shadow(0px 4px 7px rgba(0, 0, 0, 0.1));
+
+  .wrapper {
+    height: 80px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0rem 1.7rem;
+    transition: all 0.2s ease;
+
+    @media only screen and (max-width: 1170px) {
+      padding: 0rem 2rem;
+    }
+
+    @media only screen and (max-width: 570px) {
+      padding: 0rem 1.3rem;
+    }
+    .search {
+      margin: 0 2rem;
+      width: 55rem;
+      background-color: white;
+      @media only screen and (max-width: 570px) {
+        display: none;
+      }
+    }
+
+    .mainNav {
+      display: flex;
+      align-items: center;
+      transition: all 0.4s ease-in;
+
+      @media only screen and (max-width: 1207px) {
+        display: none;
+      }
+
+      .navLink {
+        margin-left: 2.8rem;
+        position: relative;
+        color: $light-primary-text;
+        text-decoration: none;
+        font-size: nth($fontSize, 2);
+
+        &:hover {
+          color: $blue;
+        }
+
+        @media only screen and (max-width: 1170px) {
+          margin-left: 2.1rem;
+          font-size: nth($fontSize, 2);
+        }
+      }
+      .navButton {
+        border: none;
+        background: $blue;
+        color: #fff;
+        font-size: nth($fontSize, 2);
+        border-radius: 4px;
+        padding: 0 1.8rem;
+        margin: 0 3rem;
+        height: 2.3rem;
+        &:hover {
+          background: rgba($blue, 0.8) !important;
+          color: #fff;
+        }
+
+        &:active {
+          background: rgba($blue, 0.8) !important;
+          color: #fff;
+          outline: none;
+        }
+
+        &:focus {
+          outline: none;
+          background: rgba($blue, 0.8) !important;
+          color: #fff;
+        }
+      }
+      .active {
+        color: $blue;
+        &::after {
+          content: "";
+          position: absolute;
+          width: 95%;
+          height: 2px;
+          background-color: $blue;
+          left: 50%;
+          transform: translate(-50%);
+          bottom: -6px;
+        }
+      }
+
+      .loginButton {
+        color: #fff;
+        font-weight: 600;
+      }
+    }
+
+    .hamSec {
+      display: none;
+
+      @media only screen and (max-width: 1207px) {
+        display: block;
+      }
+
+      .ham {
+        color: $light-primary-text;
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.sidebarContainer {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  min-height: 100vh;
+  overflow-y: auto;
+  z-index: 1000;
+
+  .closeSec {
+    height: 80px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0rem 2rem;
+
+    .close {
+      font-size: 1.7rem;
+      cursor: pointer;
+    }
+  }
+
+  .sidebarWrapper {
+    padding-top: 2rem;
+
+    .mainNav {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .navLink {
+        position: relative;
+        text-decoration: none;
+        font-size: nth($fontSize, 4);
+        margin: 0.6rem 0rem;
+        color: $blue;
+      }
+
+      .navButton {
+        border: none;
+        background: $blue;
+        color: #fff;
+        font-size: nth($fontSize, 2);
+        border-radius: 4px;
+        padding: 0 1.2rem;
+        margin: 0.5rem;
+        height: 2.4rem;
+
+        &:hover {
+          background: rgba($blue, 0.8) !important;
+          color: #fff;
+        }
+
+        &:active {
+          background: rgba($blue, 0.8) !important;
+          color: #fff;
+          outline: none;
+        }
+
+        &:focus {
+          outline: none;
+          background: rgba($blue, 0.8) !important;
+          color: #fff;
+        }
+      }
+
+      .activeLink {
+        color: #111;
+      }
+    }
+  }
+}

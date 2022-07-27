@@ -1,0 +1,116 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+@font-face {
+  font-family: "Cera Pro";
+  src: url("../util/fonts/ceralight.otf");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "Cera Pro";
+  src: url("../util/fonts/ceramedium.otf");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "Cera Pro";
+  src: url("../util/fonts/cerabold.otf");
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "Cera Pro";
+  src: url("../util/fonts/cerablack.otf");
+  font-weight: 700;
+}
+
+$font-cera: "Cera Pro";
+
+// COLORS
+$blue: #047bd5;
+$white: #fff;
+$white-text: #f3f3f3;
+$white-text-secondary: #e5e5e5c2;
+$light-primary-text: #333;
+$light-secondary-text: #a3a3a3;
+$light-tertiary-text: #2b2b2b;
+$subtitle-grey: #7d7d7d;
+
+//MEDIA QUERY ENDPOINTS
+@mixin responsive($breakpoint) {
+  @if $breakpoint==desktop {
+    @media only screen and (min-width: 1780px) {
+      @content;
+    }
+  }
+
+  @if $breakpoint==laptop2 {
+    @media only screen and (max-width: 1400px) {
+      @content;
+    }
+  }
+
+  @if $breakpoint==laptop1 {
+    @media only screen and (max-width: 1200px) {
+      @content;
+    }
+  }
+
+  @if $breakpoint==tablet4 {
+    @media only screen and (max-width: 992px) {
+      @content;
+    }
+  }
+
+  @if $breakpoint==tablet3 {
+    @media only screen and (max-width: 768px) {
+      @content;
+    }
+  }
+
+  @if $breakpoint==tablet2 {
+    @media only screen and (max-width: 640px) {
+      @content;
+    }
+  }
+
+  @if $breakpoint==tablet1 {
+    @media only screen and (max-width: 576px) {
+      @content;
+    }
+  }
+
+  @if $breakpoint==mobile4 {
+    @media only screen and (max-width: 480px) {
+      @content;
+    }
+  }
+
+  @if $breakpoint==mobile3 {
+    @media only screen and (max-width: 420px) {
+      @content;
+    }
+  }
+
+  @if $breakpoint==mobile2 {
+    @media only screen and (max-width: 376px) {
+      @content;
+    }
+  }
+
+  @if $breakpoint==mobile1 {
+    @media only screen and (max-width: 320px) {
+      @content;
+    }
+  }
+}
+
+// TSIZES
+$fontSize: 0.8rem, 0.9rem, 1rem, 1.2rem, 1.4rem, 1.8rem, 2rem, 2.4rem, 2.8rem,
+  3rem, 3.2rem, 3.8rem, 4rem, 5rem;
+
+// NAVBAR
+$landing-navbar-height: 80px;
+
+// Max width of the container
+$container-max-width: 1400px;

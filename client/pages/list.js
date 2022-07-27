@@ -13,8 +13,8 @@ export default function list() {
             <Image
               src="https://via.placeholder.com/150"
               alt="warranty"
-              width={200}
-              height={200}
+              width={600}
+              height={600}
             />
           </Col>
           <Col>

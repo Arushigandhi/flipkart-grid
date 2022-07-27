@@ -1,0 +1,113 @@
+@import "../variables";
+
+.sidebarContainer {
+  // background-color: $blue;
+  height: 100%;
+  width: 100%;
+  padding: 4rem 0rem;
+  display: flex;
+  flex-direction: column;
+  .sidebarHeading {
+    font-size: nth($fontSize, 12);
+    font-weight: 700;
+    margin-bottom: 4rem;
+    color: $blue;
+    cursor: pointer;
+  }
+
+  .sidebarItems {
+    .activenavItem {
+      padding: 0.8rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      background-color: rgba(57, 84, 255, 0.05);
+      border-left: 5px solid $blue;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      .navIcon {
+        margin-right: 1.2rem;
+        font-size: 1.3rem;
+        color: $blue;
+        transition: all 0.4s ease-in-out;
+        display: flex;
+        align-items: center;
+      }
+      .navItemName {
+        width: 40%;
+        text-align: left;
+        color: $blue;
+        font-weight: 500;
+      }
+    }
+    .navItem {
+      padding: 0.8rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      .navIcon {
+        margin-right: 1.2rem;
+        font-size: 1.3rem;
+        color: #717171;
+        transition: all 0.4s ease-in-out;
+        display: flex;
+        align-items: center;
+      }
+      .navItemName {
+        width: 40%;
+        text-align: left;
+        color: #717171;
+        font-weight: 500;
+      }
+      &:hover {
+        background-color: rgba(57, 84, 255, 0.05);
+        border-left: 5px solid $blue;
+        .navIcon {
+          color: $blue;
+        }
+        .navItemName {
+          color: $blue;
+        }
+      }
+    }
+  }
+}
+
+.drawer {
+  :global {
+    .ant-drawer-content-wrapper {
+      width: 16rem !important;
+      background-color: $blue;
+    }
+    .ant-drawer-wrapper-body {
+      width: 16rem;
+      background-color: $blue;
+    }
+    .ant-drawer-body {
+      padding: 0;
+    }
+  }
+}
+
+.mobileMenuContainer {
+  display: none;
+  padding-left: 2rem;
+  padding-top: 3rem;
+
+  @include responsive(tablet3) {
+    display: flex;
+  }
+
+  .menuIcon {
+    color: $blue;
+    font-size: 1.5rem;
+  }
+
+  .closeIcon {
+    color: $blue;
+  }
+}

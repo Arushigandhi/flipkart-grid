@@ -1,0 +1,30 @@
+@import "../variables";
+
+.DashboardHeaderContainer {
+  background: none;
+  padding: 4rem 2rem;
+  height: 8.5rem;
+
+  .DashboardHeaderLeft {
+    .BackButton {
+      border: none;
+      margin-right: 1rem;
+      opacity: 0.8;
+      width: 2rem;
+      height: 2rem;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    .DashboardHeaderTitle {
+      font-size: nth($fontSize, 6);
+      font-weight: 500;
+      color: #000;
+      @include responsive(mobile4) {
+        font-size: nth($fontSize, 5);
+      }
+    }
+  }
+}

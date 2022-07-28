@@ -1,0 +1,134 @@
+@import "../variables";
+
+.width {
+  width: 40%;
+  margin: 0 auto;
+  .formItem {
+    margin-top: 2.5rem;
+    //   border-color: rgb(180, 180, 180);
+    border: none;
+  }
+  .formInput {
+    height: 3rem;
+    border-color: rgb(199, 199, 199, 0.3);
+  }
+  :global {
+    .ant-input-number {
+      width: 100%;
+      background: transparent;
+      border-radius: none;
+    }
+    .ant-input {
+      background: transparent;
+      border-radius: 5px;
+    }
+    .ant-select-selector {
+      height: 3rem;
+    }
+  }
+}
+
+.loginBtn {
+  display: flex;
+  justify-content: center;
+}
+
+.outlineButton {
+  border: 2px solid $blue;
+  background: transparent;
+  color: $blue;
+  font-size: nth($fontSize, 3);
+  font-weight: 500;
+  border-radius: 6px;
+  height: 2.5rem;
+  width: 10rem;
+  margin-top: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+
+  &:hover {
+    background: $blue;
+    color: #fff !important;
+    border: 2px solid $blue;
+  }
+}
+
+.dashboard {
+  display: flex;
+  .productCard {
+    height: 22rem;
+    width: 14rem;
+    background-color: #fff;
+    padding: 0.8rem;
+    border-radius: 20px;
+    position: relative;
+    margin: 0 1rem;
+    cursor: pointer;
+
+    .productCardImageOverlay {
+      z-index: 3;
+      position: absolute;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 0.3rem 0.8rem;
+      color: #fff;
+      border-radius: 50px;
+      right: 1.5rem;
+      top: 1.5rem;
+    }
+
+    .productCardService {
+      position: absolute;
+      background-color: $blue;
+      padding: 0.3rem;
+      width: 2rem;
+      height: 2rem;
+      bottom: 10rem;
+      left: 1.5rem;
+      color: #fff;
+      border-radius: 50%;
+      font-size: nth($fontSize, 3);
+      font-weight: 500;
+      border: 2px solid $blue;
+      z-index: 3;
+    }
+
+    .productCardImageOverlay2 {
+      z-index: 3;
+      background-color: #fff;
+      padding: 0.3rem 0.8rem;
+      color: $blue;
+      border-radius: 50px;
+      border: 2px solid $blue;
+      font-size: 0.7rem;
+      margin-top: 0.5rem;
+      margin-left: auto;
+      margin-right: auto;
+      width: 60%;
+      text-align: center;
+
+      &:hover {
+        background: $blue;
+        color: #fff !important;
+        border: 2px solid $blue;
+        transition: all 0.3s ease-in-out;
+      }
+    }
+
+    .productCardImage {
+      background-color: aquamarine;
+      height: 12rem;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .productCardName {
+      color: #c1c1c1;
+      margin-top: 0.4rem;
+    }
+
+    .productCardTitle {
+      font-size: 1.4rem;
+      font-weight: 500;
+    }
+  }
+}

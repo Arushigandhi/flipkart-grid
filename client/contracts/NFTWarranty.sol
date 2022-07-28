@@ -21,13 +21,13 @@ contract NFTWarranty is ReentrancyGuard {
 
     string constant NOT_OWNER = "003007";
 
-    address payable owner; //owner of the smart contract
+    address owner; //owner of the smart contract
 
     //people have to pay to puy their NFT on this marketplace
     // uint256 listingPrice = 0.0005 ether;
 
     constructor () {
-        owner = payable(msg.sender);
+        owner = msg.sender;
     }
 
     // make a warranty item using nft
@@ -35,7 +35,7 @@ contract NFTWarranty is ReentrancyGuard {
         uint itemId;
         address nftContract;
         uint256 tokenId;
-        address payable seller; //person selling the nft
+        address seller; //person selling the nft
         address payable owner; //owner of the nft
         uint256 startDate;
         string productUrl;  // a variable for adding product url

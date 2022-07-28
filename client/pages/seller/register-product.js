@@ -8,6 +8,7 @@ import {
   message,
   Button,
 } from "antd";
+import DashboardLayout from "components/SellerDashboardLayout";
 import Navbar from "components/Navbar";
 import React from "react";
 import Styles from "styles/pages/Seller.module.scss";
@@ -41,12 +42,10 @@ const props = {
   },
 };
 
-export default function registerProduct() {
+export default function RegisterProduct() {
   return (
-    <div className={Styles.container}>
-      <Navbar />
-      <div className={Styles.width}>
-        <h1>Create new item</h1>
+    <DashboardLayout title="Add a Product">
+      <div className={Styles.width} style={{ width: "60%", margin: "auto" }}>
         <Form layout="vertical">
           <Form.Item
             className={Styles.formItem}
@@ -78,7 +77,7 @@ export default function registerProduct() {
             name="description"
             label="Product Description"
           >
-            <Input.Password
+            <Input.TextArea
               placeholder="Product Description"
               size="large"
               className={Styles.formInput}
@@ -151,9 +150,11 @@ export default function registerProduct() {
               />
             </Input.Group>
           </Form.Item>
-          <Button>Add Item</Button>
         </Form>
+        <div className={Styles.loginBtn}>
+          <Button className={Styles.outlineButton}>Add Item</Button>
+        </div>
       </div>
-    </div>
+    </DashboardLayout>
   );
 }

@@ -43,7 +43,7 @@
       ]
     },
     "/Users/jyothsnaashok/Desktop/flipkart/flipkart-grid/client/node_modules/@openzeppelin/contracts/utils/Counters.sol": {
-      "lastModificationDate": 1658921079452,
+      "lastModificationDate": 1658933195068,
       "contentHash": "74654e3ae5d7f39555055dfe244dab7a",
       "sourceName": "@openzeppelin/contracts/utils/Counters.sol",
       "solcConfig": {
@@ -78,7 +78,7 @@
       ]
     },
     "/Users/jyothsnaashok/Desktop/flipkart/flipkart-grid/client/node_modules/@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol": {
-      "lastModificationDate": 1658921080840,
+      "lastModificationDate": 1658933196470,
       "contentHash": "8af32effd0536e2971ff8496812a5016",
       "sourceName": "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol",
       "solcConfig": {
@@ -115,7 +115,7 @@
       ]
     },
     "/Users/jyothsnaashok/Desktop/flipkart/flipkart-grid/client/node_modules/@openzeppelin/contracts/token/ERC721/extensions/ERC721Burnable.sol": {
-      "lastModificationDate": 1658921080744,
+      "lastModificationDate": 1658933196376,
       "contentHash": "527e36af89e16c5f3cf37c35a26c2b1b",
       "sourceName": "@openzeppelin/contracts/token/ERC721/extensions/ERC721Burnable.sol",
       "solcConfig": {
@@ -153,7 +153,7 @@
       ]
     },
     "/Users/jyothsnaashok/Desktop/flipkart/flipkart-grid/client/node_modules/@openzeppelin/contracts/access/Ownable.sol": {
-      "lastModificationDate": 1658921081878,
+      "lastModificationDate": 1658933197764,
       "contentHash": "e436cea06129be2c73cda4b1acc848b5",
       "sourceName": "@openzeppelin/contracts/access/Ownable.sol",
       "solcConfig": {
@@ -190,7 +190,7 @@
       ]
     },
     "/Users/jyothsnaashok/Desktop/flipkart/flipkart-grid/client/node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol": {
-      "lastModificationDate": 1658921080719,
+      "lastModificationDate": 1658933196350,
       "contentHash": "79ff1a7eb801a525aa315fb7a679eede",
       "sourceName": "@openzeppelin/contracts/token/ERC721/ERC721.sol",
       "solcConfig": {
@@ -233,7 +233,7 @@
       ]
     },
     "/Users/jyothsnaashok/Desktop/flipkart/flipkart-grid/client/node_modules/@openzeppelin/contracts/token/ERC721/IERC721.sol": {
-      "lastModificationDate": 1658921081460,
+      "lastModificationDate": 1658933197223,
       "contentHash": "ec99d946db3685a3630554aa6055bd7f",
       "sourceName": "@openzeppelin/contracts/token/ERC721/IERC721.sol",
       "solcConfig": {
@@ -270,7 +270,7 @@
       ]
     },
     "/Users/jyothsnaashok/Desktop/flipkart/flipkart-grid/client/node_modules/@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol": {
-      "lastModificationDate": 1658921081490,
+      "lastModificationDate": 1658933197267,
       "contentHash": "c22d4395e33763de693fd440c6fd10e1",
       "sourceName": "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol",
       "solcConfig": {
@@ -305,7 +305,7 @@
       ]
     },
     "/Users/jyothsnaashok/Desktop/flipkart/flipkart-grid/client/node_modules/@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol": {
-      "lastModificationDate": 1658921081483,
+      "lastModificationDate": 1658933197255,
       "contentHash": "efbc0d15b80a74e34dbe8da0f3e879bb",
       "sourceName": "@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol",
       "solcConfig": {
@@ -342,7 +342,7 @@
       ]
     },
     "/Users/jyothsnaashok/Desktop/flipkart/flipkart-grid/client/node_modules/@openzeppelin/contracts/utils/Address.sol": {
-      "lastModificationDate": 1658921079352,
+      "lastModificationDate": 1658933194918,
       "contentHash": "c476b3895a94798b88a4bb97399e6dfe",
       "sourceName": "@openzeppelin/contracts/utils/Address.sol",
       "solcConfig": {
@@ -377,7 +377,7 @@
       ]
     },
     "/Users/jyothsnaashok/Desktop/flipkart/flipkart-grid/client/node_modules/@openzeppelin/contracts/utils/Context.sol": {
-      "lastModificationDate": 1658921079450,
+      "lastModificationDate": 1658933195057,
       "contentHash": "5f2c5c4b6af2dd4551027144797bc8be",
       "sourceName": "@openzeppelin/contracts/utils/Context.sol",
       "solcConfig": {
@@ -412,7 +412,7 @@
       ]
     },
     "/Users/jyothsnaashok/Desktop/flipkart/flipkart-grid/client/node_modules/@openzeppelin/contracts/utils/Strings.sol": {
-      "lastModificationDate": 1658921082232,
+      "lastModificationDate": 1658933197973,
       "contentHash": "cf46906c4035f51639a22265066a9e78",
       "sourceName": "@openzeppelin/contracts/utils/Strings.sol",
       "solcConfig": {
@@ -447,7 +447,7 @@
       ]
     },
     "/Users/jyothsnaashok/Desktop/flipkart/flipkart-grid/client/node_modules/@openzeppelin/contracts/utils/introspection/ERC165.sol": {
-      "lastModificationDate": 1658921080221,
+      "lastModificationDate": 1658933195897,
       "contentHash": "0e7db055ce108f9da7bb6686a00287c0",
       "sourceName": "@openzeppelin/contracts/utils/introspection/ERC165.sol",
       "solcConfig": {
@@ -484,7 +484,7 @@
       ]
     },
     "/Users/jyothsnaashok/Desktop/flipkart/flipkart-grid/client/node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol": {
-      "lastModificationDate": 1658921081341,
+      "lastModificationDate": 1658933197019,
       "contentHash": "03e6768535ac4da0e9756f1d8a4a018a",
       "sourceName": "@openzeppelin/contracts/utils/introspection/IERC165.sol",
       "solcConfig": {
@@ -519,8 +519,8 @@
       ]
     },
     "/Users/jyothsnaashok/Desktop/flipkart/flipkart-grid/client/contracts/NFTWarranty.sol": {
-      "lastModificationDate": 1658928622501,
-      "contentHash": "2d795fab4a99cf370534d3f6f751cf69",
+      "lastModificationDate": 1659015997255,
+      "contentHash": "2ef8b1c5e75beb95954552eb3dfd1a1f",
       "sourceName": "contracts/NFTWarranty.sol",
       "solcConfig": {
         "version": "0.8.4",
@@ -561,7 +561,7 @@
       ]
     },
     "/Users/jyothsnaashok/Desktop/flipkart/flipkart-grid/client/node_modules/@openzeppelin/contracts/security/ReentrancyGuard.sol": {
-      "lastModificationDate": 1658921082092,
+      "lastModificationDate": 1658933197859,
       "contentHash": "92f9448b23a90ea3bb932ee55cc3ccce",
       "sourceName": "@openzeppelin/contracts/security/ReentrancyGuard.sol",
       "solcConfig": {
@@ -596,7 +596,7 @@
       ]
     },
     "/Users/jyothsnaashok/Desktop/flipkart/flipkart-grid/client/node_modules/hardhat/console.sol": {
-      "lastModificationDate": 1658921085020,
+      "lastModificationDate": 1658933201830,
       "contentHash": "cc4777addd464ea56fa35b1c45df0591",
       "sourceName": "hardhat/console.sol",
       "solcConfig": {
@@ -628,47 +628,6 @@
       ],
       "artifacts": [
         "console"
-      ]
-    },
-    "/Users/jyothsnaashok/Desktop/flipkart/flipkart-grid/client/contracts/NFTMarket.sol": {
-      "lastModificationDate": 1658828767356,
-      "contentHash": "8ab2e71a8a449ccfb71873b9c105db73",
-      "sourceName": "contracts/NFTMarket.sol",
-      "solcConfig": {
-        "version": "0.8.4",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "@openzeppelin/contracts/utils/Counters.sol",
-        "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol",
-        "@openzeppelin/contracts/token/ERC721/ERC721.sol",
-        "@openzeppelin/contracts/security/ReentrancyGuard.sol",
-        "hardhat/console.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.4"
-      ],
-      "artifacts": [
-        "NFTMarket"
       ]
     }
   }

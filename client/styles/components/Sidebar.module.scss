@@ -1,6 +1,65 @@
 @import "../variables";
 
 .sidebarContainer {
+  .navHelp {
+    position: relative;
+    padding-top: 2rem;
+    padding-left: 0.6rem;
+    padding-right: 0.6rem;
+    padding-bottom: 1rem;
+    border-radius: 20px;
+
+    background-color: rgba(57, 84, 255, 0.05);
+    // have gradient background colour
+    margin: 1rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h1 {
+      color: $blue;
+    }
+
+    p {
+      font-size: 0.8rem;
+      color: #717171;
+    }
+
+    .infoIcon {
+      background-color: rgba(57, 84, 255, 0.05);
+      position: absolute;
+      top: -1.25rem;
+      border-radius: 50%;
+      height: 2.5rem;
+      width: 2.5rem;
+      // display: flex;
+      // justify-content: center;
+      // align-items: center;
+      font-size: 2rem;
+      .navIcon {
+        color: $blue;
+        border: 2px solid #ffffff;
+        border-radius: 50%;
+        margin: auto;
+      }
+    }
+
+    .videoButton {
+      background-color: #ffffff;
+      border-radius: 50px;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: $blue;
+
+      .navIcon {
+        color: $blue;
+        margin-left: 0.3rem;
+      }
+    }
+  }
   // background-color: $blue;
   height: 100%;
   width: 100%;
@@ -20,14 +79,15 @@
       padding: 0.8rem 0;
       display: flex;
       align-items: center;
-      justify-content: center;
       margin-bottom: 1rem;
       background-color: rgba(57, 84, 255, 0.05);
-      border-left: 5px solid $blue;
+      border-radius: 20px;
+      margin: 1rem 1rem;
       cursor: pointer;
       transition: all 0.4s ease;
       .navIcon {
         margin-right: 1.2rem;
+        margin-left: 2rem;
         font-size: 1.3rem;
         color: $blue;
         transition: all 0.4s ease-in-out;
@@ -35,8 +95,6 @@
         align-items: center;
       }
       .navItemName {
-        width: 40%;
-        text-align: left;
         color: $blue;
         font-weight: 500;
       }
@@ -45,29 +103,27 @@
       padding: 0.8rem 0;
       display: flex;
       align-items: center;
-      justify-content: center;
       margin-bottom: 1rem;
       cursor: pointer;
-      transition: all 0.4s ease;
       .navIcon {
         margin-right: 1.2rem;
+        margin-left: 3.2rem;
         font-size: 1.3rem;
-        color: #717171;
-        transition: all 0.4s ease-in-out;
         display: flex;
-        align-items: center;
       }
       .navItemName {
-        width: 40%;
-        text-align: left;
+        // text-align: left;
         color: #717171;
         font-weight: 500;
       }
       &:hover {
         background-color: rgba(57, 84, 255, 0.05);
-        border-left: 5px solid $blue;
+        border-radius: 20px;
+        margin: 1rem 1rem;
+
         .navIcon {
           color: $blue;
+          margin-left: 2.2rem;
         }
         .navItemName {
           color: $blue;
@@ -81,11 +137,14 @@
   :global {
     .ant-drawer-content-wrapper {
       width: 16rem !important;
-      background-color: $blue;
+      background-color: #ffffff;
+    }
+    .ant-layout-sider {
+      background-color: #ffffff !important;
     }
     .ant-drawer-wrapper-body {
       width: 16rem;
-      background-color: $blue;
+      background-color: #ffffff;
     }
     .ant-drawer-body {
       padding: 0;

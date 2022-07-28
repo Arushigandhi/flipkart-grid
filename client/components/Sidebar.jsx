@@ -2,7 +2,12 @@ import { Col, Row } from "antd";
 import React from "react";
 import Styles from "styles/components/Sidebar.module.scss";
 import { AiOutlineHome, AiOutlineCar } from "react-icons/ai";
-import { BsPeople } from "react-icons/bs";
+import {
+  BsFillPlayCircleFill,
+  BsInfoCircleFill,
+  BsPeople,
+} from "react-icons/bs";
+import { IoWalletOutline } from "react-icons/io5";
 import { FiTool } from "react-icons/fi";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -12,53 +17,66 @@ const Sidebar = () => {
 
   const sidebarData = [
     {
-      name: "Dashboard",
+      name: "Register Product",
       icon: <AiOutlineHome className={Styles.navIcon} />,
-      path: "/dashboard",
+      path: "/buyer/register-product",
     },
     {
-      name: "Customer",
-      icon: <BsPeople className={Styles.navIcon} />,
-      path: "/customer",
+      name: "Warranties",
+      icon: <IoWalletOutline className={Styles.navIcon} />,
+      path: "/buyer/my-warranties",
     },
     {
-      name: "Specifics",
+      name: "Past Warranties",
       icon: <AiOutlineCar className={Styles.navIcon} />,
-      path: "/specifics",
+      path: "/buyer/expired-warranties",
     },
     {
-      name: "Develop",
+      name: "Repairs",
       icon: <FiTool className={Styles.navIcon} />,
-      path: "/develop",
+      path: "/buyer/develop",
     },
   ];
 
   return (
-    <Col
-      align="middle"
-      justify="space-between"
-      className={Styles.sidebarContainer}
-    >
-      <Link href="/">
-        <div className={Styles.sidebarHeading}>A.</div>
-      </Link>
-      <nav className={Styles.sidebarItems}>
-        {sidebarData.map((item, index) => (
-          <Link href={item.path} key={index}>
-            <Row
-              className={
-                router.pathname === item.path
-                  ? Styles.activenavItem
-                  : Styles.navItem
-              }
-            >
-              <Col>{item.icon}</Col>
-              <Col className={Styles.navItemName}>{item.name}</Col>
-            </Row>
-          </Link>
-        ))}
-      </nav>
-    </Col>
+    <>
+      <Col
+        align="middle"
+        justify="space-between"
+        className={Styles.sidebarContainer}
+      >
+        <Link href="/">
+          <div className={Styles.sidebarHeading}>A.</div>
+        </Link>
+        <nav className={Styles.sidebarItems}>
+          {sidebarData.map((item, index) => (
+            <Link href={item.path} key={index}>
+              <Row
+                className={
+                  router.pathname === item.path
+                    ? Styles.activenavItem
+                    : Styles.navItem
+                }
+              >
+                <Col>{item.icon}</Col>
+                <Col className={Styles.navItemName}>{item.name}</Col>
+              </Row>
+            </Link>
+          ))}
+        </nav>
+        <div className={Styles.navHelp}>
+          <div className={Styles.infoIcon}>
+            <BsInfoCircleFill className={Styles.navIcon} />
+          </div>
+          <h1>Need Guidance?</h1>
+          <p>See the video, it can help you to understand the application.</p>
+          <div className={Styles.videoButton}>
+            Play Video
+            <BsFillPlayCircleFill className={Styles.navIcon} />
+          </div>
+        </div>
+      </Col>
+    </>
   );
 };
 

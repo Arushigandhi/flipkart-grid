@@ -16,7 +16,10 @@ const DashboardLayout = ({ children, ...rest }) => {
 
   return (
     <Layout style={{ display: "flex", flexDirection: "row" }}>
-      <Sider width={isDesktop ? "240" : "0"} style={{ position: "static" }}>
+      <Sider
+        width={isDesktop ? "240" : "0"}
+        style={{ position: "static", backgroundColor: "#ffffff" }}
+      >
         <Sidebar
           style={{
             position: "static",

@@ -97,9 +97,9 @@ function Navbar({ notification }) {
           >
             <Link href="/">
               <Image
-                src={"/Flipkart-logo.png"}
-                width={180}
-                height={80}
+                src={"/logo.svg"}
+                width={480}
+                height={120}
                 objectFit="contain"
                 alt="bugbase-logo"
               />

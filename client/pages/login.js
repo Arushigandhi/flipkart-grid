@@ -24,7 +24,10 @@ export default function Login() {
               <Button className={Styles.outlineButton}>Login</Button>
             </div>
             <p>
-              Don't have an account? <span>Sign up Now</span>
+              Don't have an account?{" "}
+              <span>
+                <a href="/register">Regsiter Now</a>
+              </span>
             </p>
           </Form>
         </Card>

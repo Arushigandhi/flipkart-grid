@@ -13,6 +13,10 @@
     border-color: rgb(199, 199, 199, 0.3);
   }
   :global {
+    .ant-upload.ant-upload-drag {
+      background-color: transparent;
+      border-color: black !important;
+    }
     .ant-input-number {
       width: 100%;
       background: transparent;
@@ -45,6 +49,9 @@
   margin-top: 1rem;
   margin-left: auto;
   margin-right: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &:hover {
     background: $blue;

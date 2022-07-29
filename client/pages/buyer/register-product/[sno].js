@@ -7,6 +7,7 @@ import {
   Select,
   message,
   Button,
+  Steps,
 } from "antd";
 import DashboardLayout from "components/DashboardLayout";
 import Navbar from "components/Navbar";
@@ -17,6 +18,7 @@ import { InfoCircleOutlined } from "@ant-design/icons";
 
 const { Dragger } = Upload;
 const { Option } = Select;
+const { Step } = Steps;
 
 const props = {
   name: "file",
@@ -42,45 +44,16 @@ const props = {
   },
 };
 
-export default function RegisterProduct() {
+export default function RegisterProduct({ sno }) {
   return (
     <DashboardLayout title="Register my Product">
       <div className={Styles.width} style={{ width: "60%", margin: "auto" }}>
-        <Form layout="vertical">
-          <Form.Item
-            className={Styles.formItem}
-            name="productName"
-            label="Product Serial Number"
-          >
-            <Input
-              placeholder="Serial Number"
-              size="large"
-              className={Styles.formInput}
-            />
-          </Form.Item>
-          <Form.Item
-            className={Styles.formItem}
-            name="customerName"
-            label="Your Name"
-          >
-            <Input
-              placeholder="Name"
-              size="large"
-              className={Styles.formInput}
-            />
-          </Form.Item>
-          <Form.Item
-            className={Styles.formItem}
-            name="customerEmail"
-            label="Your Email Address"
-          >
-            <Input
-              placeholder="Email ID"
-              size="large"
-              className={Styles.formInput}
-            />
-          </Form.Item>
-        </Form>
+        <Steps progressDot current={1}>
+          <Step title="Basic Info" />
+          <Step title="Confirm Product Details" />
+          <Step title="Get your NFT" />
+        </Steps>
+
         <div className={Styles.loginBtn}>
           <Button className={Styles.outlineButton}>Next</Button>
         </div>
@@ -88,3 +61,7 @@ export default function RegisterProduct() {
     </DashboardLayout>
   );
 }
+
+RegisterProduct.getInitialProps = async ({ query: { sno } }) => {
+  return { sno };
+};

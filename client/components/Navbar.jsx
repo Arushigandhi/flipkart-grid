@@ -91,14 +91,13 @@ function Navbar({ notification }) {
           <div
             style={{
               cursor: "pointer",
-              display: "flex",
-              alignItems: "center",
+              textAlign: "left",
             }}
           >
             <Link href="/">
               <Image
                 src={"/logo.svg"}
-                width={480}
+                width={120}
                 height={120}
                 objectFit="contain"
                 alt="bugbase-logo"

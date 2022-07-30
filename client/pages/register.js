@@ -1,9 +1,29 @@
-import { Button, Card, Form, Input, Row } from "antd";
+import { Button, Card, Form, Input, Row, message } from "antd";
 import Navbar from "components/Navbar";
+import { useRouter } from "next/router";
 import React from "react";
+import { useMutation } from "react-query";
+import { SignUp } from "services/auth.service";
 import Styles from "styles/pages/Login.module.scss";
 
 export default function register() {
+  const router = useRouter();
+
+  const regMutation = useMutation(SignUp, {
+    onError: (e) => {
+      message.error("Login failed!");
+      message.error(e.message);
+    },
+    onSuccess: (data) => {
+      message.success(data.message);
+      router.push("/login");
+    },
+  });
+
+  const onRegSubmit = async (values) => {
+    await regMutation.mutateAsync(values);
+  };
+
   return (
     <div>
       <Navbar />
@@ -13,7 +33,7 @@ export default function register() {
           <h2>
             Already have an account? <span>Login</span>
           </h2>
-          <Form layout="vertical">
+          <Form layout="vertical" onFinish={onRegSubmit}>
             <Row justify="space-between">
               <Form.Item name="firstName" style={{ width: "47%" }}>
                 <Input placeholder="First Name" size="large" />
@@ -31,7 +51,9 @@ export default function register() {
             <Form.Item name="password">
               <Input.Password placeholder="Password" size="large" />
             </Form.Item>
-            <Button className={Styles.outlineButton}>Login</Button>
+            <Button htmlType="submit" className={Styles.outlineButton}>
+              Register
+            </Button>
           </Form>
         </Card>
       </div>

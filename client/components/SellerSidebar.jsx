@@ -3,6 +3,7 @@ import React from "react";
 import Styles from "styles/components/Sidebar.module.scss";
 import { AiOutlineHome, AiOutlineCar } from "react-icons/ai";
 import {
+  BsClockHistory,
   BsFillPlayCircleFill,
   BsInfoCircleFill,
   BsPeople,
@@ -35,6 +36,11 @@ const Sidebar = () => {
     {
       name: "Repairs",
       icon: <FiTool className={Styles.navIcon} />,
+      path: "/develop",
+    },
+    {
+      name: "Record Sale",
+      icon: <BsClockHistory className={Styles.navIcon} />,
       path: "/develop",
     },
   ];

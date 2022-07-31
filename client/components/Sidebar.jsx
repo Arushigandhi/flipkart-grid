@@ -11,6 +11,7 @@ import { IoWalletOutline } from "react-icons/io5";
 import { FiTool } from "react-icons/fi";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 const Sidebar = () => {
   const router = useRouter();
@@ -46,7 +47,15 @@ const Sidebar = () => {
         className={Styles.sidebarContainer}
       >
         <Link href="/">
-          <div className={Styles.sidebarHeading}>FD.</div>
+          <div className={Styles.sidebarHeading}>
+            <Image
+              src={"/logo.svg"}
+              width={200}
+              height={200}
+              objectFit="contain"
+              alt="flipdapp-logo"
+            />
+          </div>
         </Link>
         <nav className={Styles.sidebarItems}>
           {sidebarData.map((item, index) => (

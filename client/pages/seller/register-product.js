@@ -57,7 +57,7 @@ export default function RegisterProduct() {
       <div className={Styles.width} style={{ width: "60%", margin: "auto" }}>
         <Form
           onFinish={async (values) => {
-            console.log(values);
+            console.log(values.extensionPrice);
             const files = [];
             try {
               for (let file of values.files?.fileList || []) {

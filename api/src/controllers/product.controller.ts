@@ -15,6 +15,8 @@ export const addProduct = async (req: Request, res: Response) => {
       sellPrice,
       releaseDate,
       images,
+      quantity,
+      extensionPrice,
     } = req.body;
     const product = new ProductModel({
       name,
@@ -24,6 +26,8 @@ export const addProduct = async (req: Request, res: Response) => {
       sellPrice,
       releaseDate,
       images,
+      quantity,
+      extensionPrice,
     });
     await product.save();
     return res.status(200).json({

@@ -46,7 +46,7 @@ const Sidebar = () => {
         className={Styles.sidebarContainer}
       >
         <Link href="/">
-          <div className={Styles.sidebarHeading}>A.</div>
+          <div className={Styles.sidebarHeading}>FD.</div>
         </Link>
         <nav className={Styles.sidebarItems}>
           {sidebarData.map((item, index) => (

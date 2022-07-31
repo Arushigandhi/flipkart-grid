@@ -64,12 +64,13 @@
   .productCard {
     box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.08);
     border: none;
-    height: 22rem;
+    height: 24rem;
     width: 25rem;
     background-color: #fff;
     padding: 0.4rem !important;
     border-radius: 20px;
     position: relative;
+    margin-right: 2rem;
     .productCardImageOverlay {
       z-index: 3;
       position: absolute;
@@ -82,9 +83,16 @@
     }
 
     .productCardImage {
+      text-align: center;
       background-color: aquamarine;
       border-radius: 20px;
       overflow: hidden;
+      width: 18rem;
+      height: 15rem;
+      img {
+        width: 18rem;
+        height: 15rem;
+      }
     }
 
     .productCardTitle {

@@ -18,7 +18,7 @@ export default function Home() {
             </Button>
           </Row>
         </div>
-        <h1 className={Styles.heading}>Trending Brands</h1>
+        {/* <h1 className={Styles.heading}>Trending Brands</h1>
         <Row className={Styles.trending}>
           <Avatar
             size={100}
@@ -86,7 +86,7 @@ export default function Home() {
               />
             }
           />
-        </Row>
+        </Row> */}
         {/* <Row className={Styles.categories}>
           <CategoryCard />
           <CategoryCard />

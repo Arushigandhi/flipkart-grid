@@ -1,4 +1,4 @@
-import { Card, Image } from "antd";
+import { Card, Image, Row } from "antd";
 import SimpleForm from "components/ChatBot";
 import DashboardLayout from "components/SellerDashboardLayout";
 import React from "react";
@@ -19,17 +19,17 @@ export default function Dashboard() {
 
   return (
     <DashboardLayout title="My Products">
-      <div className={Styles.dashboard}>
+      <Row className={Styles.dashboard}>
         {products?.data?.products?.map((product, index) => (
           <Card className={Styles.productCard} key={index} hoverable={true}>
             <div className={Styles.productCardImage}>
-              <Image src={product?.images[0]} height={200} width={400}></Image>
+              <Image src={product?.images[0]} layout="fill" />
             </div>
             <div className={Styles.productCardTitle}>{product?.name}</div>
             <div className={Styles.productCardDesc}>{product?.description}</div>
           </Card>
         ))}
-      </div>
+      </Row>
     </DashboardLayout>
   );
 }

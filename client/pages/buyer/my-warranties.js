@@ -9,7 +9,7 @@ import { FiShare2 } from "react-icons/fi";
 import Market from "../../artifacts/contracts/NFTWarranty.sol/NFTWarranty.json";
 import NFT from "../../artifacts/contracts/NFT.sol/NFT.json";
 
-import { nftMarketAddress, nftAddress } from "../../.config";
+import { nftMarketAddress } from "../../.config";
 
 export default function Dashboard() {
   const [nfts, setNfts] = useState([]);
@@ -34,10 +34,9 @@ export default function Dashboard() {
       signer
     );
     console.log(nftWarranty);
-    const nft = new ethers.Contract(nftAddress, NFT.abi, signer);
 
     // Call the fetchMyWarrantyItems function from the nftMarket instance
-    const nfts = await nftWarranty.fetchMyExpiredWarrantyItems();
+    const nfts = await nftWarranty.fetchMyWarrantyItems();
 
     console.log(nfts);
   };

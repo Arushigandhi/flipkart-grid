@@ -4,7 +4,10 @@ pragma solidity ^0.8.4;
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Burnable.sol";
+// import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Burnable.sol";
+
+import "@openzeppelin/contracts/utils/Counters.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 
  //prevents re-entrancy attacks
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
@@ -12,12 +15,12 @@ import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
 import "hardhat/console.sol";
 
-
-
-contract NFTWarranty is ReentrancyGuard {
+contract NFTWarranty is ERC721URIStorage {
     using Counters for Counters.Counter;
     Counters.Counter private _itemIds;
     Counters.Counter private _itemsProvided;
+
+    Counters.Counter private _tokenIds;
 
     string constant NOT_OWNER = "003007";
 
@@ -26,14 +29,13 @@ contract NFTWarranty is ReentrancyGuard {
     //people have to pay to puy their NFT on this marketplace
     // uint256 listingPrice = 0.0005 ether;
 
-    constructor () {
+    constructor () payable ERC721("Metaverse Tokens", "MET") {
         owner = msg.sender;
     }
 
-    // make a warranty item using nft
+       // make a warranty item using nft
     struct WarrantyItem {
         uint itemId;
-        address nftContract;
         uint256 tokenId;
         address seller; //person selling the nft
         address payable owner; //owner of the nft
@@ -45,6 +47,55 @@ contract NFTWarranty is ReentrancyGuard {
         uint256 incrementPrice;
     }
 
+
+    /// @notice create a new token
+    /// @param uri : token URI
+    function createToken(string memory uri,
+        uint256 period,
+        string memory sno,
+        uint256 incrementPrice) public returns (uint) {
+        //set a new token id for the token to be minted
+        _tokenIds.increment();
+        uint256 newItemId = _tokenIds.current();
+         
+         _safeMint (msg.sender, newItemId); //mint the token
+         _setTokenURI(newItemId, uri); //generate the URI
+
+         _itemIds.increment();
+         uint256 itemId = _itemIds.current();
+
+        idToWarrantyItem[itemId] = WarrantyItem(
+            itemId,
+            newItemId,
+            owner, // the smart contract is the seller of the nft 
+            payable(msg.sender),
+            block.timestamp,
+            uri,
+            true,
+            period,
+            sno,
+            incrementPrice
+        );
+
+            // log the event
+            emit WarrantyItemCreated(
+                itemId,
+                newItemId,
+                owner,
+                msg.sender,
+                block.timestamp,
+                uri,
+                true,
+                period,
+                sno,
+                incrementPrice
+            );
+
+
+        return newItemId; 
+    }
+
+    
     /**
    * @dev Mapping from owner address to count of his tokens.
    */
@@ -66,7 +117,6 @@ contract NFTWarranty is ReentrancyGuard {
     //log message (when Item is sold)
     event WarrantyItemCreated (
         uint indexed itemId,
-        address indexed nftContract,
         uint256 indexed tokenId,
         address  seller,
         address  owner,
@@ -90,13 +140,12 @@ contract NFTWarranty is ReentrancyGuard {
     // }
 
     function createWarrantyItem(
-        address nftContract,
         uint256 tokenId,
         string memory productUrl,
         uint256 period,
         string memory sno,
         uint256 incrementPrice
-    ) public payable nonReentrant{
+    ) public {
         
         // require(msg.value == listingPrice, "Price must match listing price"); // to check if the passed listing price actually matches the listing price
             _itemIds.increment();
@@ -104,7 +153,6 @@ contract NFTWarranty is ReentrancyGuard {
 
             idToWarrantyItem[itemId] = WarrantyItem(
                 itemId,
-                nftContract,
                 tokenId,
                 owner, // the smart contract is the seller of the nft 
                 payable(msg.sender),
@@ -119,7 +167,6 @@ contract NFTWarranty is ReentrancyGuard {
             // log the event
             emit WarrantyItemCreated(
                 itemId,
-                nftContract,
                 tokenId,
                 owner,
                 msg.sender,
@@ -205,8 +252,12 @@ contract NFTWarranty is ReentrancyGuard {
     }
 
     // verify the NFT Ownership
-    function verifyNFTOwnership(address nftContract, uint256 tokenId) public view returns (bool) {
-        return IERC721(nftContract).ownerOf(tokenId) == msg.sender;
+    function verifyNFTOwnership(uint256 tokenId) public view returns (bool) {
+        // check if the msg.sender is the owner of the NFT
+        if(idToWarrantyItem[tokenId].owner == msg.sender){
+            return true;
+        }
+        return false;
     }
 
     function returnCaller () public view returns (address) {
@@ -237,23 +288,25 @@ contract NFTWarranty is ReentrancyGuard {
     }
 
     // Function to burn the nft
-    function burnNFT(address nftContract, uint256 tokenId) public returns (bool) {
-        require(verifyNFTOwnership(nftContract, tokenId), "You are not the owner of this NFT");
+    function burnNFT(uint256 tokenId) public returns (bool) {
+        require(verifyNFTOwnership(tokenId), "You are not the owner of this NFT");
         idToWarrantyItem[tokenId].active = false;
+        _burn(tokenId);
         return true;
     }
 
     // function to transfer the ownership of the warranty item to another user using ierc721
-    function transferWarrantyItem(address nftContract, uint256 tokenId, address payable newOwner) public {
-        require(verifyNFTOwnership(nftContract, tokenId), "You are not the owner of this NFT");
-        IERC721(nftContract).transferFrom(msg.sender, newOwner, tokenId);
+    function transferWarrantyItem(uint256 tokenId, address payable newOwner) public {
+        require(verifyNFTOwnership(tokenId), "You are not the owner of this NFT");
+        transferFrom(msg.sender, newOwner, tokenId);
         // find the warranty item
         idToWarrantyItem[tokenId].owner = newOwner;
     }
     
     function increasePeriod(uint256 itemId, uint256 addPeriod) payable public {
-        uint256 price = idToWarrantyItem[itemId].incrementPrice * addPeriod;
-        require(msg.value == price, "You need to pay the correct price for increasing the period");
+        // uint256 price = idToWarrantyItem[itemId].incrementPrice * addPeriod;
+        
+        // require(msg.value == value, "You need to pay the correct price for increasing the period");
         if(verifyWarrantyItemActive(itemId)){
             idToWarrantyItem[itemId].period += addPeriod;
         }

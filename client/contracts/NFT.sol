@@ -8,9 +8,13 @@ import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
  
 
-contract NFT is ERC721URIStorage, ERC721Burnable, Ownable  {
+contract NFT is ERC721URIStorage, ERC721Burnable  {
     //auto-increment field for each token
     using Counters for Counters.Counter;
+    Counters.Counter private _itemIds;
+    Counters.Counter private _itemsProvided;
+
+
 
     Counters.Counter private _tokenIds;
 
@@ -23,7 +27,7 @@ contract NFT is ERC721URIStorage, ERC721Burnable, Ownable  {
 
     /// @notice create a new token
     /// @param uri : token URI
-    function createToken(string memory uri) public onlyOwner returns (uint) {
+    function createToken(string memory uri) public returns (uint) {
         //set a new token id for the token to be minted
         _tokenIds.increment();
         uint256 newItemId = _tokenIds.current();

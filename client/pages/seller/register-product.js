@@ -93,7 +93,7 @@ export default function RegisterProduct() {
           </Form.Item>
           <Form.Item
             className={Styles.formItem}
-            name="productName"
+            name="name"
             label="Product Name"
           >
             <Input

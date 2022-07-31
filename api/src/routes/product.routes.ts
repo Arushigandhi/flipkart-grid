@@ -9,5 +9,6 @@ router.post(
   "/check-if-product-is-sold",
   productController.checkIfProductIsSold
 );
+router.get("/get-all-product-names", productController.getAllProductNames);
 
 module.exports = router;

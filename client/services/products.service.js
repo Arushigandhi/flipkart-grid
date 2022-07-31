@@ -8,12 +8,26 @@ export const AddProduct = async (body) => {
   );
   return data;
 };
-console.log(BACKEND_ROOT_URL);
 
 export const checkIfProductIsSold = async (data) => {
   const res = await apiClient.post(
     `${BACKEND_ROOT_URL}/product/check-if-product-is-sold`,
     data
+  );
+  return res;
+};
+
+export const getAllProductNames = async () => {
+  const res = await apiClient.get(
+    `${BACKEND_ROOT_URL}/product/get-all-product-names`
+  );
+  return res;
+};
+
+export const AddSoldProduct = async (body) => {
+  const res = await apiClient.post(
+    `${BACKEND_ROOT_URL}/product/record-sold-product`,
+    body
   );
   return res;
 };

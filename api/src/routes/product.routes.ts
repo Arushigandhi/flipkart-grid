@@ -5,7 +5,7 @@ import * as productController from "../controllers/product.controller";
 const router = express.Router();
 
 router.post("/add-product", productController.addProduct);
-router.get("/get-all-products", productController.getAllProducts);
+router.post("/get-all-products", productController.getAllProducts);
 router.post("/record-sold-product", productController.recordSoldProduct);
 router.post(
   "/check-if-product-is-sold",
@@ -15,5 +15,7 @@ router.get("/get-all-product-names", productController.getAllProductNames);
 router.get("/check-warranty", productController.checkIfWarranty);
 router.get("/mark-warranty", productController.markWarranty);
 router.post("/notify-seller", productController.notifySeller);
+router.post("/get-seller-requests", productController.getAllRequests);
+router.post("/get-my-requests", productController.getMyRequests);
 
 module.exports = router;

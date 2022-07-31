@@ -9,6 +9,14 @@ export const AddProduct = async (body) => {
   return data;
 };
 
+export const GetAllProducts = async (data) => {
+  const res = await apiClient.post(
+    `${BACKEND_ROOT_URL}/product/get-all-products`,
+    data
+  );
+  return res;
+};
+
 export const checkIfProductIsSold = async (data) => {
   const res = await apiClient.post(
     `${BACKEND_ROOT_URL}/product/check-if-product-is-sold`,
@@ -35,6 +43,22 @@ export const AddSoldProduct = async (body) => {
 export const getNotifs = async (data) => {
   const res = await apiClient.post(
     `${BACKEND_ROOT_URL}/product/notify-seller`,
+    data
+  );
+  return res;
+};
+
+export const GetSellerRequests = async (data) => {
+  const res = await apiClient.post(
+    `${BACKEND_ROOT_URL}/product/get-seller-requests`,
+    data
+  );
+  return res;
+};
+
+export const GetMyRequests = async (data) => {
+  const res = await apiClient.post(
+    `${BACKEND_ROOT_URL}/product/get-my-requests`,
     data
   );
   return res;

@@ -1,20 +1,19 @@
 import { Table } from "antd";
-import SimpleForm from "components/ChatBot";
 import DashboardLayout from "components/DashboardLayout";
 import React from "react";
 import { useQuery } from "react-query";
 import { useSelector } from "react-redux";
-import { GetMyRequests } from "services/products.service";
+import { GetSellerRequests } from "services/products.service";
 
 export default function repairs() {
   const info = useSelector((state) => state.user);
 
-  const { data: reqs, isLoading } = useQuery("myRequests", () =>
-    GetMyRequests({
-      buyerId: info.user.user._id,
+  const { data: reqs, isLoading } = useQuery("sellerRequests", () =>
+    GetSellerRequests({
+      sellerId: info.user.user._id,
     })
   );
-  console.log(reqs, "buyer");
+  console.log(reqs);
 
   const columns = [
     {
@@ -32,12 +31,21 @@ export default function repairs() {
       dataIndex: "address",
       key: "address",
     },
+    {
+      title: "Buyer Name",
+      dataIndex: "buyerName",
+      key: "buyerName",
+    },
+    {
+      title: "Buyer Email",
+      dataIndex: "buyerEmail",
+      key: "buyerEmail",
+    },
   ];
 
   return (
     <DashboardLayout title="My Requests">
       <Table dataSource={reqs?.data?.requests} columns={columns} />
-      <SimpleForm />
     </DashboardLayout>
   );
 }

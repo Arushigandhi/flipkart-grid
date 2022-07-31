@@ -24,24 +24,19 @@ const Sidebar = () => {
       path: "/seller/dashboard",
     },
     {
-      name: "Warranties",
-      icon: <IoWalletOutline className={Styles.navIcon} />,
-      path: "/seller/my-warranties",
-    },
-    {
       name: "Add Product",
       icon: <MdOutlineCreate className={Styles.navIcon} />,
       path: "/seller/register-product",
     },
     {
-      name: "Repairs",
-      icon: <FiTool className={Styles.navIcon} />,
-      path: "/develop",
-    },
-    {
       name: "Record Sale",
       icon: <BsClockHistory className={Styles.navIcon} />,
       path: "/seller/record-sale",
+    },
+    {
+      name: "Repairs",
+      icon: <FiTool className={Styles.navIcon} />,
+      path: "/seller/repairs",
     },
   ];
 

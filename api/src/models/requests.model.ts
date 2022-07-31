@@ -6,6 +6,8 @@ export interface RequestDoc extends mongoose.Document {
   address: string;
   buyerEmail: string;
   buyerName: string;
+  sellerId: mongoose.Types.ObjectId;
+  buyerId: mongoose.Types.ObjectId;
 }
 
 const RequestSchema = new mongoose.Schema({
@@ -23,6 +25,12 @@ const RequestSchema = new mongoose.Schema({
   },
   buyerName: {
     type: String,
+  },
+  sellerId: {
+    type: mongoose.Types.ObjectId,
+  },
+  buyerId: {
+    type: mongoose.Types.ObjectId,
   },
 });
 

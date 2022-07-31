@@ -62,10 +62,12 @@
 
 .dashboard {
   .productCard {
-    height: 20rem;
-    width: 14rem;
+    box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.08);
+    border: none;
+    height: 22rem;
+    width: 25rem;
     background-color: #fff;
-    padding: 0.8rem;
+    padding: 0.4rem !important;
     border-radius: 20px;
     position: relative;
     .productCardImageOverlay {
@@ -81,15 +83,20 @@
 
     .productCardImage {
       background-color: aquamarine;
-      height: 12rem;
       border-radius: 20px;
       overflow: hidden;
     }
 
     .productCardTitle {
+      text-align: center;
       font-size: 1.4rem;
       font-weight: 500;
-      margin-top: 1rem;
+      margin-top: 1.5rem;
+    }
+    .productCardDesc {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #848484 !important;
     }
   }
 }

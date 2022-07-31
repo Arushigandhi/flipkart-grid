@@ -41,7 +41,10 @@ export const addProduct = async (req: Request, res: Response) => {
 
 export const getAllProducts = async (req: Request, res: Response) => {
   try {
-    const products = await ProductModel.find();
+    const products = await ProductModel.find({
+      sellerId: req.body.sellerId,
+    });
+    console.log(products);
     return res.status(200).json({
       success: true,
       products,
@@ -189,7 +192,6 @@ export const markWarranty = async (req: Request, res: Response) => {
 export const notifySeller = async (req: Request, res: Response) => {
   try {
     const { service, sno, address, buyerId } = req.body;
-    console.log(service, sno, address);
     const product = await SoldProductModel.findOne({
       sno: sno,
     });
@@ -216,8 +218,46 @@ export const notifySeller = async (req: Request, res: Response) => {
       sno: sno,
       buyerEmail: buyer.email,
       buyerName: buyer.firstName + " " + buyer.lastName,
+      sellerId: product.sellerId,
+      buyerId: buyerId,
     });
     await request.save();
+  } catch (err) {
+    console.log(err);
+    return res.status(400).json({
+      success: false,
+      message: "UNKNOWN_SERVER_ERROR",
+    });
+  }
+};
+
+export const getAllRequests = async (req: Request, res: Response) => {
+  try {
+    const requests = await RequestModel.find({
+      sellerId: req.body.sellerId,
+    });
+    return res.status(200).json({
+      success: true,
+      requests,
+    });
+  } catch (err) {
+    console.log(err);
+    return res.status(400).json({
+      success: false,
+      message: "UNKNOWN_SERVER_ERROR",
+    });
+  }
+};
+
+export const getMyRequests = async (req: Request, res: Response) => {
+  try {
+    const requests = await RequestModel.find({
+      buyerId: req.body.buyerId,
+    });
+    return res.status(200).json({
+      success: true,
+      requests,
+    });
   } catch (err) {
     console.log(err);
     return res.status(400).json({

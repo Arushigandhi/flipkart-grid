@@ -13,7 +13,7 @@ import {
 } from "antd";
 import DashboardLayout from "components/DashboardLayout";
 import Navbar from "components/Navbar";
-import React from "react";
+import React, { useState } from "react";
 import Styles from "styles/pages/Seller.module.scss";
 import { InboxOutlined } from "@ant-design/icons";
 import { InfoCircleOutlined } from "@ant-design/icons";
@@ -27,6 +27,7 @@ import { create as ipfsHttpClient } from "ipfs-http-client";
 import { nftMarketAddress, nftAddress } from "../../../.config";
 import Market from "../../../artifacts/contracts/NFTWarranty.sol/NFTWarranty.json";
 import NFT from "../../../artifacts/contracts/NFT.sol/NFT.json";
+import { useSelector } from "react-redux";
 
 const client = ipfsHttpClient("https://ipfs.infura.io:5001/api/v0");
 
@@ -253,6 +254,9 @@ export default function RegisterProduct() {
       ),
     },
   ];
+
+  const { isLoggedIn } = useSelector((state) => state.user);
+
   return (
     <DashboardLayout title="Register my Product">
       <div className={Styles.width} style={{ width: "80%", margin: "auto" }}>

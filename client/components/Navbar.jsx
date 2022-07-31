@@ -111,15 +111,15 @@ function Navbar({ notification }) {
           /> */}
           <nav className={Styles.mainNav}>
             {/* <ActiveLink href="/companies" activeClassName={Styles.active}> */}
-            <a className={`${Styles.navLink}`}>Become a seller</a>
+            {/* <a className={`${Styles.navLink}`}>Become a seller</a> */}
             {/* </ActiveLink> */}
 
             {/* <ActiveLink href="/hackers" activeClassName={Styles.active}> */}
-            <a className={Styles.navLink}>Cart</a>
+            {/* <a className={Styles.navLink}>Cart</a> */}
             {/* </ActiveLink> */}
 
             {/* <ActiveLink href="/hacktivity" activeClassName={Styles.active}> */}
-            <a className={Styles.navLink}>More</a>
+            {/* <a className={Styles.navLink}>More</a> */}
             {/* </ActiveLink> */}
 
             <Link href="/login">
@@ -158,56 +158,6 @@ function Navbar({ notification }) {
               </div>
               <div className={Styles.sidebarWrapper}>
                 <nav className={Styles.mainNav}>
-                  <a
-                    onClick={closeSidebar}
-                    href="/companies"
-                    className={`${Styles.navLink} ${Styles.diff}`}
-                  >
-                    For Companies
-                  </a>
-                  <a
-                    onClick={closeSidebar}
-                    href="/hackers"
-                    className={`${Styles.navLink} ${Styles.diff}`}
-                  >
-                    For Researchers
-                  </a>
-                  <a
-                    onClick={closeSidebar}
-                    href="/plans"
-                    className={`${Styles.navLink} ${Styles.diff}`}
-                  >
-                    Plans
-                  </a>
-
-                  <a
-                    onClick={closeSidebar}
-                    href="/hacktivity"
-                    className={`${Styles.navLink} ${Styles.diff}`}
-                  >
-                    Hacktivity
-                  </a>
-                  <a
-                    onClick={closeSidebar}
-                    href="https://docs.bugbase.in/"
-                    className={`${Styles.navLink} ${Styles.diff}`}
-                  >
-                    Docs
-                  </a>
-                  <a
-                    onClick={closeSidebar}
-                    href="/blog"
-                    className={`${Styles.navLink} ${Styles.diff}`}
-                  >
-                    Blog
-                  </a>
-                  <a
-                    onClick={closeSidebar}
-                    href="#communitySection"
-                    className={`${Styles.navLink} ${Styles.diff}`}
-                  >
-                    Community
-                  </a>
                   {/* <a
                     onClick={closeSidebar}
                     href="/events"

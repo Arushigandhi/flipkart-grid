@@ -10,6 +10,7 @@ import Market from "../../artifacts/contracts/NFTWarranty.sol/NFTWarranty.json";
 import NFT from "../../artifacts/contracts/NFT.sol/NFT.json";
 
 import { nftMarketAddress, nftAddress } from "../../.config";
+import { useSelector } from "react-redux";
 
 export default function Dashboard() {
   const [nfts, setNfts] = useState([]);
@@ -41,6 +42,8 @@ export default function Dashboard() {
 
     console.log(nfts);
   };
+
+  const { isLoggedIn } = useSelector((state) => state.user);
 
   if (loadingState === "loaded" && !nfts.length) {
     return (

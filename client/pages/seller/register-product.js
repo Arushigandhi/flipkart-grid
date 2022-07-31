@@ -7,13 +7,16 @@ import {
   Select,
   message,
   Button,
+  notification,
 } from "antd";
 import DashboardLayout from "components/SellerDashboardLayout";
 import Navbar from "components/Navbar";
-import React from "react";
+import React, { useState } from "react";
 import Styles from "styles/pages/Seller.module.scss";
 import { InboxOutlined } from "@ant-design/icons";
 import { InfoCircleOutlined } from "@ant-design/icons";
+import { create } from "ipfs-http-client";
+import { AddProduct } from "services/products.service";
 
 const { Dragger } = Upload;
 const { Option } = Select;
@@ -21,7 +24,7 @@ const { Option } = Select;
 const props = {
   name: "file",
   multiple: true,
-  action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
+  // action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
 
   onChange(info) {
     const { status } = info.file;
@@ -42,11 +45,38 @@ const props = {
   },
 };
 
+const client = create("https://ipfs.infura.io:5001/api/v0");
+
 export default function RegisterProduct() {
+  const [loading, setLoading] = useState(false);
   return (
     <DashboardLayout title="Add a Product">
       <div className={Styles.width} style={{ width: "60%", margin: "auto" }}>
-        <Form layout="vertical">
+        <Form
+          onFinish={async (values) => {
+            console.log(values);
+            const files = [];
+            try {
+              for (let file of values.files?.fileList || []) {
+                try {
+                  console.log(file);
+                  const added = await client.add(file.originFileObj);
+                  const url = `https://ipfs.infura.io/ipfs/${added.path}`;
+                  files.push(url);
+                } catch (error) {
+                  console.log("File ain`t uploadin..", error);
+                }
+              }
+              await AddProduct({ ...values, images: files, files: undefined });
+              message.success("Product added successfully");
+            } catch (err) {
+              console.log("ERROR");
+              console.log(err);
+              notification.error("Unknown error!");
+            }
+          }}
+          layout="vertical"
+        >
           <Form.Item
             className={Styles.formItem}
             name="files"
@@ -96,30 +126,30 @@ export default function RegisterProduct() {
           </Form.Item>
           <Form.Item
             className={Styles.formItem}
-            name="price"
+            name="sellPrice"
             label="Product Price"
           >
             {/* <Input placeholder="Product Price" size="large" /> */}
-            <Input.Group compact placeholder className={Styles.formInput}>
-              <Select
+            {/* <Input.Group compact placeholder className={Styles.formInput}> */}
+            {/* <Select
                 defaultValue="INR"
                 style={{ width: "20%" }}
                 className={Styles.formInput}
               >
                 <Option value="INR">INR</Option>
                 <Option value="ETH">ETH</Option>
-              </Select>
-              <Input
-                className={Styles.formInput}
-                style={{ width: "80%" }}
-                placeholder="Product Price"
-                // options={[{ value: "text 1" }, { value: "text 2" }]}
-              />
-            </Input.Group>
+              </Select> */}
+            <Input
+              className={Styles.formInput}
+              style={{ width: "80%" }}
+              placeholder="Product Price"
+              // options={[{ value: "text 1" }, { value: "text 2" }]}
+            />
+            {/* </Input.Group> */}
           </Form.Item>
           <Form.Item
             className={Styles.formItem}
-            name="warrantyPrice"
+            name="warrantyExtensionPrice"
             label={
               <label>
                 Warranty Extension Price
@@ -133,27 +163,29 @@ export default function RegisterProduct() {
             }
           >
             {/* <Input placeholder="Warranty Extension Price" size="large" /> */}
-            <Input.Group compact className={Styles.formInput}>
-              <Select
+            {/* <Input.Group compact className={Styles.formInput}> */}
+            {/* <Select
                 defaultValue="INR"
                 style={{ width: "20%" }}
                 className={Styles.formInput}
               >
                 <Option value="INR">INR</Option>
                 <Option value="ETH">ETH</Option>
-              </Select>
-              <Input
-                style={{ width: "80%" }}
-                placeholder="Warranty Extension Price"
-                // options={[{ value: "text 1" }, { value: "text 2" }]}
-                className={Styles.formInput}
-              />
-            </Input.Group>
+              </Select> */}
+            <Input
+              style={{ width: "80%" }}
+              placeholder="Warranty Extension Price"
+              // options={[{ value: "text 1" }, { value: "text 2" }]}
+              className={Styles.formInput}
+            />
+            {/* </Input.Group> */}
           </Form.Item>
+          <div className={Styles.loginBtn}>
+            <Button className={Styles.outlineButton} htmlType="submit">
+              Add Item
+            </Button>
+          </div>
         </Form>
-        <div className={Styles.loginBtn}>
-          <Button className={Styles.outlineButton}>Add Item</Button>
-        </div>
       </div>
     </DashboardLayout>
   );

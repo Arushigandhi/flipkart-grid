@@ -24,10 +24,11 @@ import { checkIfProductIsSold } from "services/products.service";
 import Web3Modal from "web3modal";
 import web3 from "web3";
 import { create as ipfsHttpClient } from "ipfs-http-client";
-import { nftMarketAddress, nftAddress } from "../../../.config";
+import { nftMarketAddress } from "../../../.config";
 import Market from "../../../artifacts/contracts/NFTWarranty.sol/NFTWarranty.json";
 import NFT from "../../../artifacts/contracts/NFT.sol/NFT.json";
 import { useSelector } from "react-redux";
+import { ethers } from "ethers";
 
 const client = ipfsHttpClient("https://ipfs.infura.io:5001/api/v0");
 
@@ -43,11 +44,79 @@ export default function RegisterProduct() {
 
   const [fileUrl, setFileUrl] = useState(null);
 
-  const [formInput, updateFormInput] = useState({
-    price: "",
+  const [productUrl, setProductUrl] = useState(null);
+
+  const [productData, setProductData] = useState({
     name: "",
     description: "",
+    price: "",
+    extensionPrice: "",
+    serialNo: "",
+    sellerEmail: "",
+    sellerName: "",
+    expiryDate: "",
+    warrantyPeriod: "",
   });
+
+  // add productData to ipfs
+  const addProductDataToIpfs = async () => {
+    const data = JSON.stringify(productData);
+    try {
+      const result = await client.add(data);
+      console.log(result);
+      const url = `https://ipfs.infura.io/ipfs/${result.path}`;
+      setProductUrl(url);
+      let period = ethers.BigNumber.from(productData.warrantyPeriod);
+      let incrementPrice = ethers.BigNumber.from(productData.extensionPrice);
+      console.log(period, incrementPrice);
+      createWarranty();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const createWarranty = async () => {
+    const web3Modal = new Web3Modal();
+    const connection = await web3Modal.connect();
+    const provider = new ethers.providers.Web3Provider(connection);
+    const signer = provider.getSigner();
+
+    /* next, create the item */
+
+    console.log("hello");
+    console.log(productData);
+
+    // convert productData.period to ether.bignumber
+    let period = ethers.BigNumber.from(productData.warrantyPeriod);
+    // let incrementPrice = ethers.BigNumber.from(productData.extensionPrice);
+    let incrementPrice = ethers.utils.parseUnits(
+      productData.extensionPrice,
+      "ether"
+    );
+
+    console.log(period, incrementPrice);
+
+    let contract = new ethers.Contract(nftMarketAddress, Market.abi, signer);
+    let transaction = await contract.createToken(
+      productUrl,
+      period,
+      productData.serialNo,
+      incrementPrice
+    );
+    let tx = await transaction.wait();
+    let event = tx.events[0];
+    let value = event.args[2];
+    let tokenId = value.toNumber();
+    // transaction = await contract.createWarrantyItem(
+    //   nftAddress,
+    //   tokenId,
+    //   productUrl,
+    //   period,
+    //   productData.serialNo,
+    //   incrementPrice
+    // );
+    console.log(tokenId);
+  };
 
   const next = () => {
     setcurrent(current + 1);
@@ -62,7 +131,27 @@ export default function RegisterProduct() {
     onSuccess: (d) => {
       next();
       console.log(d.data);
-      setDetails(d.data.result);
+
+      const date = new Date();
+      date.setMonth(date.getMonth() + 6);
+      const dateString = date.toISOString().split("T")[0];
+      setDetails({
+        ...d.data.result,
+        expiryDate: dateString,
+      });
+
+      setProductData({
+        productName: d.data.result.product?.name,
+        description: d.data.result.product?.description,
+        price: d.data.result.product?.sellPrice,
+        extensionPrice: d.data.result.product?.extensionPrice.toString(),
+        serialNo: d.data.result?.soldProduct?.sno,
+        sellerEmail: d.data.result?.seller?.email,
+        sellerName:
+          d.data.result?.seller?.fname + " " + d.data.result?.seller?.lname,
+        expiryDate: dateString,
+        warrantyPeriod: d.data.result.soldProduct?.warrantyPeriod.toString(),
+      });
     },
     onError: () => {
       setStatus("error");
@@ -202,14 +291,36 @@ export default function RegisterProduct() {
                 >
                   {details?.soldProduct?.phoneNumber}
                 </Descriptions.Item>
+                <Descriptions.Item
+                  label="Warranty Period"
+                  labelStyle={{ color: "#047bd5", fontWeight: "500" }}
+                >
+                  {details?.soldProduct?.warrantyPeriod} months
+                </Descriptions.Item>
+                <Descriptions.Item
+                  label="Valid through"
+                  labelStyle={{ color: "#047bd5", fontWeight: "500" }}
+                >
+                  {details?.expiryDate}
+                </Descriptions.Item>
+                <Descriptions.Item
+                  label="Extension Cost (for 6 months)"
+                  labelStyle={{ color: "#047bd5", fontWeight: "500" }}
+                >
+                  {details?.product?.extensionPrice}
+                </Descriptions.Item>
               </Descriptions>
+
               <div className={Styles.loginBtn}>
                 <Button className={Styles.outlineButton} onClick={() => prev()}>
                   <BsArrowLeft />
                   &nbsp; Back
                 </Button>
-                <Button className={Styles.outlineButton} onClick={() => next()}>
-                  Next
+                <Button
+                  className={Styles.outlineButton}
+                  onClick={() => addProductDataToIpfs()}
+                >
+                  Confirm
                 </Button>
               </div>
             </>

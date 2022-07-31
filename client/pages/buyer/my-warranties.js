@@ -35,10 +35,9 @@ export default function Dashboard() {
       signer
     );
     console.log(nftWarranty);
-    const nft = new ethers.Contract(nftAddress, NFT.abi, signer);
 
     // Call the fetchMyWarrantyItems function from the nftMarket instance
-    const nfts = await nftWarranty.fetchMyExpiredWarrantyItems();
+    const nfts = await nftWarranty.fetchMyWarrantyItems();
 
     console.log(nfts);
   };

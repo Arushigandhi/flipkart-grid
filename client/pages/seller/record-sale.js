@@ -5,24 +5,15 @@ import {
   Select,
   message,
   Button,
-  notification,
+  InputNumber,
 } from "antd";
 import DashboardLayout from "components/SellerDashboardLayout";
-import Navbar from "components/Navbar";
 import React, { useState } from "react";
 import Styles from "styles/pages/Seller.module.scss";
-import { InboxOutlined } from "@ant-design/icons";
-import { InfoCircleOutlined } from "@ant-design/icons";
-import { create } from "ipfs-http-client";
-import {
-  AddProduct,
-  AddSoldProduct,
-  getAllProductNames,
-} from "services/products.service";
-import { namehash } from "ethers/lib/utils";
+import { AddSoldProduct, getAllProductNames } from "services/products.service";
 import { useMutation, useQuery } from "react-query";
+import { useSelector } from "react-redux";
 
-const { Dragger } = Upload;
 const { Option } = Select;
 
 export default function recordSale() {
@@ -44,8 +35,13 @@ export default function recordSale() {
 
   const onSubmit = async (values) => {
     console.log(values);
-    await submitMutation.mutateAsync(values);
+    await submitMutation.mutateAsync({
+      ...values,
+      sellerId: info.user.user._id,
+    });
   };
+
+  const info = useSelector((state) => state.user);
 
   return (
     <DashboardLayout title="Record a Sale">
@@ -118,12 +114,12 @@ export default function recordSale() {
             />
           </Form.Item>
           <Form.Item
+            name="warrantyPeriod"
+            label="Warranty Period"
             className={Styles.formItem}
-            name="sellerId"
-            label="Seller Id"
           >
-            <Input
-              placeholder="Seller Id"
+            <InputNumber
+              placeholder="Warranty Period"
               size="large"
               className={Styles.formInput}
             />

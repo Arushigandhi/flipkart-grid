@@ -1,9 +1,13 @@
 import { Image } from "antd";
+import SimpleForm from "components/ChatBot";
 import DashboardLayout from "components/SellerDashboardLayout";
 import React from "react";
+import { useQuery } from "react-query";
+import { getNotifs } from "services/products.service";
 import Styles from "styles/pages/Seller.module.scss";
 
 export default function Dashboard() {
+  const { data: notifs, isLoading } = useQuery("notifs", getNotifs);
   return (
     <DashboardLayout title="My Products">
       <div className={Styles.dashboard}>

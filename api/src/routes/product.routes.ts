@@ -1,5 +1,7 @@
 import express from "express";
 import * as productController from "../controllers/product.controller";
+// import CheckJWT from "../middleware/checkJWT";
+
 const router = express.Router();
 
 router.post("/add-product", productController.addProduct);
@@ -10,5 +12,8 @@ router.post(
   productController.checkIfProductIsSold
 );
 router.get("/get-all-product-names", productController.getAllProductNames);
+router.get("/check-warranty", productController.checkIfWarranty);
+router.get("/mark-warranty", productController.markWarranty);
+router.post("/notify-seller", productController.notifySeller);
 
 module.exports = router;

@@ -3,19 +3,23 @@ import { Request, Response } from "express";
 import ProductModel from "../models/product.model";
 import SoldProductModel from "../models/soldProduct.model";
 import UserModel from "../models/user.model";
+import RequestModel from "../models/requests.model";
 
 export const addProduct = async (req: Request, res: Response) => {
   try {
-    const { name, isPublic, description, sellPrice, releaseDate, images } =
-      req.body;
-    const sellerData = await UserModel.findOne({ _id: res.locals.uid });
-    if (sellerData && sellerData.isSeller === false) {
-      return res.status(400).json({ message: "ERROR_OCCURED_NOT_A_SELLER" });
-    }
+    const {
+      name,
+      isPublic,
+      sellerId,
+      description,
+      sellPrice,
+      releaseDate,
+      images,
+    } = req.body;
     const product = new ProductModel({
       name,
       isPublic,
-      sellerId: res.locals.uid,
+      sellerId,
       description,
       sellPrice,
       releaseDate,
@@ -92,7 +96,6 @@ export const recordSoldProduct = async (req: Request, res: Response) => {
 export const checkIfProductIsSold = async (req: Request, res: Response) => {
   try {
     const { serialNo, buyerName, buyerEmail } = req.body;
-    // find the product with the serialNo
     const soldProduct = await SoldProductModel.findOne({
       sno: serialNo,
       buyerName,
@@ -105,9 +108,7 @@ export const checkIfProductIsSold = async (req: Request, res: Response) => {
     if (!product) {
       return res.status(400).json({ message: "PRODUCT_NOT_FOUND" });
     }
-
     const seller = await UserModel.findOne({ _id: soldProduct.sellerId });
-
     const result = {
       product,
       seller,
@@ -133,6 +134,90 @@ export const getAllProductNames = async (req: Request, res: Response) => {
       success: true,
       productNames,
     });
+  } catch (err) {
+    console.log(err);
+    return res.status(400).json({
+      success: false,
+      message: "UNKNOWN_SERVER_ERROR",
+    });
+  }
+};
+
+export const checkIfWarranty = async (req: Request, res: Response) => {
+  try {
+    const product = await SoldProductModel.findOne({
+      sno: req.body.serialNo,
+    });
+    if (!product) {
+      return res.status(400).json({ message: "PRODUCT_NOT_FOUND" });
+    }
+    return res.status(200).json({
+      success: true,
+      hasWarranty: product.hasWarranty,
+    });
+  } catch (err) {
+    console.log(err);
+    return res.status(400).json({
+      success: false,
+      message: "UNKNOWN_SERVER_ERROR",
+    });
+  }
+};
+
+export const markWarranty = async (req: Request, res: Response) => {
+  try {
+    const product = await SoldProductModel.findOne({
+      sno: req.body.serialNo,
+    });
+    if (!product) {
+      return res.status(400).json({ message: "PRODUCT_NOT_FOUND" });
+    }
+    product.hasWarranty = true;
+    await product.save();
+    return res.status(200).json({
+      success: true,
+    });
+  } catch (err) {
+    console.log(err);
+    return res.status(400).json({
+      success: false,
+      message: "UNKNOWN_SERVER_ERROR",
+    });
+  }
+};
+
+export const notifySeller = async (req: Request, res: Response) => {
+  try {
+    const { service, sno, address, buyerId } = req.body;
+    console.log(service, sno, address);
+    const product = await SoldProductModel.findOne({
+      sno: sno,
+    });
+    if (!product) {
+      return res.status(400).json({ message: "PRODUCT_NOT_FOUND" });
+    }
+    const user = await UserModel.findById(product.sellerId);
+    if (!user) {
+      return res.status(400).json({ message: "USER_NOT_FOUND" });
+    }
+    const buyer = await UserModel.findById(buyerId);
+    if (!buyer) {
+      return res.status(400).json({ message: "USER_NOT_FOUND" });
+    }
+    user.notifications.push({
+      service: service,
+      address: address,
+      sno: sno,
+    });
+    await user.save();
+    const request = new RequestModel({
+      service: service,
+      address: address,
+      sno: sno,
+      buyerEmail: buyer.email,
+      buyerName: buyer.firstName + " " + buyer.lastName,
+    });
+    await request.save();
   } catch (err) {
     console.log(err);
     return res.status(400).json({

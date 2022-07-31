@@ -8,6 +8,7 @@ export interface SoldProductDoc extends mongoose.Document {
   sno: string;
   phoneNumber: string;
   warrantyPeriod: number;
+  hasWarranty: boolean;
 }
 
 const SoldProductSchema = new mongoose.Schema({
@@ -33,6 +34,10 @@ const SoldProductSchema = new mongoose.Schema({
   warrantyPeriod: {
     type: Number,
     default: 6,
+  },
+  hasWarranty: {
+    type: Boolean,
+    default: false,
   },
 });
 

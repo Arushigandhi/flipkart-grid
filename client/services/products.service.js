@@ -31,3 +31,11 @@ export const AddSoldProduct = async (body) => {
   );
   return res;
 };
+
+export const getNotifs = async (data) => {
+  const res = await apiClient.post(
+    `${BACKEND_ROOT_URL}/product/notify-seller`,
+    data
+  );
+  return res;
+};

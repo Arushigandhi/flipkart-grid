@@ -29,6 +29,7 @@ import Market from "../../../artifacts/contracts/NFTWarranty.sol/NFTWarranty.jso
 import NFT from "../../../artifacts/contracts/NFT.sol/NFT.json";
 import { useSelector } from "react-redux";
 import { ethers } from "ethers";
+import SimpleForm from "components/ChatBot";
 
 const client = ipfsHttpClient("https://ipfs.infura.io:5001/api/v0");
 
@@ -378,6 +379,7 @@ export default function RegisterProduct() {
         </Steps>
         {steps[current].component}
       </div>
+      <SimpleForm />
     </DashboardLayout>
   );
 }

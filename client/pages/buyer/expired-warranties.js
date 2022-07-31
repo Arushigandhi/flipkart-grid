@@ -4,6 +4,7 @@ import Styles from "styles/pages/Buyer.module.scss";
 import { Image } from "antd";
 import { FiShare2 } from "react-icons/fi";
 import { useSelector } from "react-redux";
+import SimpleForm from "components/ChatBot";
 
 export default function Dashboard() {
   const { isLoggedIn } = useSelector((state) => state.user);
@@ -53,6 +54,7 @@ export default function Dashboard() {
           <div className={Styles.productCardImageOverlay2}>Buy Extension</div>
         </div>
       </div>
+      <SimpleForm />
     </DashboardLayout>
   );
 }

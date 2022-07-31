@@ -15,6 +15,7 @@ import React from "react";
 import Styles from "styles/pages/Seller.module.scss";
 import { InboxOutlined } from "@ant-design/icons";
 import { InfoCircleOutlined } from "@ant-design/icons";
+import SimpleForm from "components/ChatBot";
 
 const { Dragger } = Upload;
 const { Option } = Select;
@@ -60,6 +61,7 @@ export default function RegisterProduct({ sno }) {
           <Button className={Styles.outlineButton}>Next</Button>
         </div>
       </div>
+      <SimpleForm />
     </DashboardLayout>
   );
 }

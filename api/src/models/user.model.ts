@@ -1,6 +1,10 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
-
+export interface UserNotificationDoc {
+  service: string;
+  sno: string;
+  address: string;
+}
 export interface UserDoc extends mongoose.Document {
   firstName: string;
   lastName: string;
@@ -9,6 +13,7 @@ export interface UserDoc extends mongoose.Document {
   phoneNumber: string;
   isSeller: boolean;
   MatchPassword(password: string): boolean;
+  notifications: UserNotificationDoc[];
 }
 
 const UserSchema = new mongoose.Schema<UserDoc>({
@@ -37,6 +42,22 @@ const UserSchema = new mongoose.Schema<UserDoc>({
     type: Boolean,
     default: false,
   },
+  notifications: [
+    {
+      service: {
+        type: String,
+        default: "",
+      },
+      sno: {
+        type: String,
+        default: "",
+      },
+      address: {
+        type: String,
+        default: "",
+      },
+    },
+  ],
 });
 
 UserSchema.pre<UserDoc>("save", async function (next) {

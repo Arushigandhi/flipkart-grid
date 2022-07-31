@@ -17,6 +17,7 @@ import { InboxOutlined } from "@ant-design/icons";
 import { InfoCircleOutlined } from "@ant-design/icons";
 import { create } from "ipfs-http-client";
 import { AddProduct } from "services/products.service";
+import { useSelector } from "react-redux";
 
 const { Dragger } = Upload;
 const { Option } = Select;
@@ -48,6 +49,8 @@ const props = {
 const client = create("https://ipfs.infura.io:5001/api/v0");
 
 export default function RegisterProduct() {
+  const info = useSelector((state) => state.user);
+
   const [loading, setLoading] = useState(false);
   return (
     <DashboardLayout title="Add a Product">
@@ -67,7 +70,12 @@ export default function RegisterProduct() {
                   console.log("File ain`t uploadin..", error);
                 }
               }
-              await AddProduct({ ...values, images: files, files: undefined });
+              await AddProduct({
+                ...values,
+                images: files,
+                files: undefined,
+                sellerId: info.user.user._id,
+              });
               message.success("Product added successfully");
             } catch (err) {
               console.log("ERROR");
@@ -141,7 +149,7 @@ export default function RegisterProduct() {
               </Select> */}
             <Input
               className={Styles.formInput}
-              style={{ width: "80%" }}
+              // style={{ width: "80%" }}
               placeholder="Product Price"
               // options={[{ value: "text 1" }, { value: "text 2" }]}
             />
@@ -149,7 +157,7 @@ export default function RegisterProduct() {
           </Form.Item>
           <Form.Item
             className={Styles.formItem}
-            name="warrantyExtensionPrice"
+            name="extensionPrice"
             label={
               <label>
                 Warranty Extension Price
@@ -173,7 +181,7 @@ export default function RegisterProduct() {
                 <Option value="ETH">ETH</Option>
               </Select> */}
             <Input
-              style={{ width: "80%" }}
+              // style={{ width: "80%" }}
               placeholder="Warranty Extension Price"
               // options={[{ value: "text 1" }, { value: "text 2" }]}
               className={Styles.formInput}

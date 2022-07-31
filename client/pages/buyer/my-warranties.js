@@ -11,6 +11,7 @@ import NFT from "../../artifacts/contracts/NFT.sol/NFT.json";
 
 import { nftMarketAddress, nftAddress } from "../../.config";
 import { useSelector } from "react-redux";
+import SimpleForm from "components/ChatBot";
 
 export default function Dashboard() {
   const [nfts, setNfts] = useState([]);
@@ -111,6 +112,7 @@ export default function Dashboard() {
           <div className={Styles.productCardImageOverlay2}>More Details</div>
         </div>
       </div>
+      <SimpleForm />
     </DashboardLayout>
   );
 }

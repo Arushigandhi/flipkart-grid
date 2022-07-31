@@ -29,7 +29,7 @@ contract NFTWarranty is ERC721URIStorage {
     //people have to pay to puy their NFT on this marketplace
     // uint256 listingPrice = 0.0005 ether;
 
-    constructor () payable ERC721("Metaverse Tokens", "MET") {
+    constructor () payable ERC721("NFT Warranty Tokens", "NWT") {
         owner = msg.sender;
     }
 
@@ -64,7 +64,7 @@ contract NFTWarranty is ERC721URIStorage {
          _itemIds.increment();
          uint256 itemId = _itemIds.current();
 
-        idToWarrantyItem[itemId] = WarrantyItem(
+         idToWarrantyItem[itemId] = WarrantyItem(
             itemId,
             newItemId,
             owner, // the smart contract is the seller of the nft 
@@ -76,21 +76,6 @@ contract NFTWarranty is ERC721URIStorage {
             sno,
             incrementPrice
         );
-
-            // log the event
-            emit WarrantyItemCreated(
-                itemId,
-                newItemId,
-                owner,
-                msg.sender,
-                block.timestamp,
-                uri,
-                true,
-                period,
-                sno,
-                incrementPrice
-            );
-
 
         return newItemId; 
     }
@@ -138,46 +123,6 @@ contract NFTWarranty is ERC721URIStorage {
     //      }
     //      return listingPrice;
     // }
-
-    function createWarrantyItem(
-        uint256 tokenId,
-        string memory productUrl,
-        uint256 period,
-        string memory sno,
-        uint256 incrementPrice
-    ) public {
-        
-        // require(msg.value == listingPrice, "Price must match listing price"); // to check if the passed listing price actually matches the listing price
-            _itemIds.increment();
-            uint256 itemId = _itemIds.current();
-
-            idToWarrantyItem[itemId] = WarrantyItem(
-                itemId,
-                tokenId,
-                owner, // the smart contract is the seller of the nft 
-                payable(msg.sender),
-                block.timestamp,
-                productUrl,
-                true,
-                period,
-                sno,
-                incrementPrice
-            );
-
-            // log the event
-            emit WarrantyItemCreated(
-                itemId,
-                tokenId,
-                owner,
-                msg.sender,
-                block.timestamp,
-                productUrl,
-                true,
-                period,
-                sno,
-                incrementPrice
-            );
-    }
 
 
     function getWarrantyItemCount() public view returns (uint256) {
@@ -234,7 +179,8 @@ contract NFTWarranty is ERC721URIStorage {
         for(uint i = 0; i < count; i++){
             uint currentId = idToWarrantyItem[i+1].itemId;
             WarrantyItem storage currentItem = idToWarrantyItem[currentId];
-            if(currentItem.owner == msg.sender && currentItem.active == true){
+
+            if(currentItem.owner == msg.sender && currentItem.active == false){
                 itemCount += 1;
             }
         }
@@ -301,6 +247,7 @@ contract NFTWarranty is ERC721URIStorage {
         transferFrom(msg.sender, newOwner, tokenId);
         // find the warranty item
         idToWarrantyItem[tokenId].owner = newOwner;
+        
     }
     
     function increasePeriod(uint256 itemId, uint256 addPeriod) payable public {

@@ -57,6 +57,7 @@ export default function RegisterProduct() {
     sellerName: "",
     expiryDate: "",
     warrantyPeriod: "",
+    productImage: "",
   });
 
   // add productData to ipfs
@@ -90,10 +91,7 @@ export default function RegisterProduct() {
     // convert productData.period to ether.bignumber
     let period = ethers.BigNumber.from(productData.warrantyPeriod);
     // let incrementPrice = ethers.BigNumber.from(productData.extensionPrice);
-    let incrementPrice = ethers.utils.parseUnits(
-      productData.extensionPrice,
-      "ether"
-    );
+    let incrementPrice = ethers.BigNumber.from(productData.extensionPrice);
 
     console.log(period, incrementPrice);
 
@@ -117,6 +115,7 @@ export default function RegisterProduct() {
     //   incrementPrice
     // );
     console.log(tokenId);
+    next();
   };
 
   const next = () => {
@@ -149,9 +148,12 @@ export default function RegisterProduct() {
         serialNo: d.data.result?.soldProduct?.sno,
         sellerEmail: d.data.result?.seller?.email,
         sellerName:
-          d.data.result?.seller?.fname + " " + d.data.result?.seller?.lname,
+          d.data.result?.seller?.firstName +
+          " " +
+          d.data.result?.seller?.lastName,
         expiryDate: dateString,
         warrantyPeriod: d.data.result.soldProduct?.warrantyPeriod.toString(),
+        productImage: d.data.result.product?.images[0],
       });
     },
     onError: () => {

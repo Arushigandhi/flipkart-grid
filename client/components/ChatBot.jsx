@@ -5,6 +5,7 @@ import { ThemeProvider } from "styled-components";
 import { Button } from "antd";
 import { useQuery } from "react-query";
 import { getNotifs } from "services/products.service";
+import { useSelector } from "react-redux";
 
 export const Review = (props) => {
   const [srno, setSrno] = useState();

@@ -450,7 +450,6 @@ export default function Dashboard() {
               </Row>
             </div>
           </div>
-
           <SimpleForm />
         </>
       ),

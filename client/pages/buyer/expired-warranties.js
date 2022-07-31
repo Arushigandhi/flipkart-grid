@@ -3,8 +3,11 @@ import React from "react";
 import Styles from "styles/pages/Buyer.module.scss";
 import { Image } from "antd";
 import { FiShare2 } from "react-icons/fi";
+import { useSelector } from "react-redux";
 
 export default function Dashboard() {
+  const { isLoggedIn } = useSelector((state) => state.user);
+
   return (
     <DashboardLayout title="Expired Warranties">
       <div className={Styles.dashboard}>

@@ -21,7 +21,7 @@ const DashboardHeader = ({ title }) => {
 
   // change url based on value
   const onChange = (e) => {
-    if (e == "Buyer") router.push("/buyer/dashboard");
+    if (e == "Buyer") router.push("/buyer/register-product");
     else if (e == "Seller") router.push("/seller/dashboard");
   };
   return (

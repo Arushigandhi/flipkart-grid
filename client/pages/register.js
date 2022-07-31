@@ -15,7 +15,7 @@ export default function register() {
       message.error(e.message);
     },
     onSuccess: (data) => {
-      message.success(data.message);
+      message.success("Registered in successfully!");
       router.push("/login");
     },
   });

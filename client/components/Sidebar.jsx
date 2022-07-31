@@ -34,7 +34,7 @@ const Sidebar = () => {
     {
       name: "Repairs",
       icon: <FiTool className={Styles.navIcon} />,
-      path: "/buyer/develop",
+      path: "/buyer/repairs",
     },
   ];
 

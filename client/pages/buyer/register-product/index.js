@@ -27,6 +27,7 @@ import { create as ipfsHttpClient } from "ipfs-http-client";
 import { nftMarketAddress } from "../../../.config";
 import Market from "../../../artifacts/contracts/NFTWarranty.sol/NFTWarranty.json";
 import NFT from "../../../artifacts/contracts/NFT.sol/NFT.json";
+import { useSelector } from "react-redux";
 import { ethers } from "ethers";
 
 const client = ipfsHttpClient("https://ipfs.infura.io:5001/api/v0");
@@ -364,6 +365,9 @@ export default function RegisterProduct() {
       ),
     },
   ];
+
+  const { isLoggedIn } = useSelector((state) => state.user);
+
   return (
     <DashboardLayout title="Register my Product">
       <div className={Styles.width} style={{ width: "80%", margin: "auto" }}>

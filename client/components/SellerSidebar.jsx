@@ -41,7 +41,7 @@ const Sidebar = () => {
     {
       name: "Record Sale",
       icon: <BsClockHistory className={Styles.navIcon} />,
-      path: "/develop",
+      path: "/seller/record-sale",
     },
   ];
 

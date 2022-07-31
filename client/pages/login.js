@@ -3,11 +3,15 @@ import Navbar from "components/Navbar";
 import { useRouter } from "next/router";
 import React from "react";
 import { useMutation } from "react-query";
+import { useDispatch, useSelector } from "react-redux";
 import { SignIn } from "services/auth.service";
+import { login } from "store/user.slice";
 import Styles from "styles/pages/Login.module.scss";
 
 export default function Login() {
   const router = useRouter();
+  const dispatch = useDispatch();
+  const info = useSelector((state) => state.user);
 
   const loginMutation = useMutation(SignIn, {
     onError: (e) => {
@@ -15,8 +19,9 @@ export default function Login() {
       message.error(e.message);
     },
     onSuccess: (data) => {
-      message.success(data.message);
+      message.success("Logged in successfully!");
       router.push("/seller/dashboard");
+      dispatch(login(data));
     },
   });
 
@@ -47,7 +52,7 @@ export default function Login() {
             <p>
               Don't have an account?{" "}
               <span>
-                <a href="/register">Regsiter Now</a>
+                <a href="/register">Register Now</a>
               </span>
             </p>
           </Form>

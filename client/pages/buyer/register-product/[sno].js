@@ -44,6 +44,8 @@ const props = {
   },
 };
 
+const { isLoggedIn } = useSelector((state) => state.user);
+
 export default function RegisterProduct({ sno }) {
   return (
     <DashboardLayout title="Register my Product">

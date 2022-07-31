@@ -14,11 +14,9 @@ export interface ProductDoc extends mongoose.Document {
 const ProductSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true,
   },
   isPublic: {
     type: Boolean,
-    required: true,
     default: true,
   },
   sellerId: {
@@ -26,20 +24,19 @@ const ProductSchema = new mongoose.Schema({
   },
   description: {
     type: String,
-    required: true,
   },
   quantity: {
     type: Number,
-    required: true,
     default: 0,
   },
   sellPrice: {
     type: Number,
-    required: true,
+  },
+  warrantyExtensionPrice: {
+    type: Number,
   },
   releaseDate: {
     type: Date,
-    required: true,
     default: new Date(Date.now()),
   },
   images: {

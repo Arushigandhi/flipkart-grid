@@ -37,7 +37,7 @@ export const Review = (props) => {
             <td>{props?.steps?.service?.message}</td>
           </tr>
           <tr>
-            <td>Address</td>
+            <td>Location</td>
             <td>{props?.steps?.address?.message}</td>
           </tr>
         </tbody>
@@ -70,6 +70,8 @@ export default function SimpleForm() {
   return (
     <ThemeProvider theme={theme}>
       <ChatBot
+        recognitionEnable={true}
+        speechSynthesis={{ enable: true, lang: "en" }}
         floating={true}
         steps={[
           {
@@ -98,7 +100,7 @@ export default function SimpleForm() {
           },
           {
             id: "5",
-            message: "May I know your address?",
+            message: "May I know your location?",
             trigger: "address",
           },
           {

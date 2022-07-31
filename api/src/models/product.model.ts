@@ -9,6 +9,7 @@ export interface ProductDoc extends mongoose.Document {
   sellPrice: number;
   releaseDate: Date;
   images: string;
+  extensionPrice: number;
 }
 
 const ProductSchema = new mongoose.Schema({
@@ -44,6 +45,10 @@ const ProductSchema = new mongoose.Schema({
   },
   images: {
     type: [String],
+  },
+  extensionPrice: {
+    type: Number,
+    default: 0,
   },
 });
 

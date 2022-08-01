@@ -1,7 +1,8 @@
 require("dotenv").config();
-import express, { Application, Request, Response } from "express";
+import { Application, Request, Response } from "express";
+import express from "express";
 import cors from "cors";
-import { connectToDB } from "./configs/db.config";
+import { connectToDB } from "./src/configs/db.config";
 
 const app: Application = express();
 
@@ -18,6 +19,7 @@ var whitelist = [
   "http://localhost:80",
   "https://localhost:443",
   "http://localhost",
+  "https://flipdapp.vercel.app",
 ];
 
 var corsOptions = {
@@ -46,8 +48,8 @@ app.get("/api/hey", (req: Request, res: Response) => {
     message: "Welcome to our API !",
   });
 });
-app.use("/api/auth", require("./routes/auth.routes"));
-app.use("/api/product", require("./routes/product.routes"));
+app.use("/api/auth", require("./src/routes/auth.routes"));
+app.use("/api/product", require("./src/routes/product.routes"));
 
 app.listen(process.env.PORT || 8080, async () => {
   await connectToDB();

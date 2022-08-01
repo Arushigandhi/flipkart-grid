@@ -26,14 +26,11 @@ contract NFTWarranty is ERC721URIStorage {
 
     address owner; //owner of the smart contract
 
-    //people have to pay to puy their NFT on this marketplace
-    // uint256 listingPrice = 0.0005 ether;
-
     constructor () payable ERC721("NFT Warranty Tokens", "NWT") {
         owner = msg.sender;
     }
 
-       // make a warranty item using nft
+    // make a warranty item using nft
     struct WarrantyItem {
         uint itemId;
         uint256 tokenId;
@@ -112,17 +109,6 @@ contract NFTWarranty is ERC721URIStorage {
         string sno,
         uint256 incrementPrice
     );
-
-    // function getListingPrice() public view returns (uint256) {
-    //     return listingPrice;
-    // }
-
-    // function setListingPrice(uint _price) public returns(uint) {
-    //      if(msg.sender == address(this) ){
-    //          listingPrice = _price;
-    //      }
-    //      return listingPrice;
-    // }
 
 
     function getWarrantyItemCount() public view returns (uint256) {

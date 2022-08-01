@@ -11,11 +11,6 @@ async function main() {
   const nftWarranty = await NFTWarranty.deploy();
   await nftWarranty.deployed();
   console.log("nftWarranty: ", nftWarranty.address);
-
-  const NFT = await hre.ethers.getContractFactory("NFT");
-  const nft = await NFT.deploy(nftWarranty.address);
-  await nft.deployed();
-  console.log("nft: ", nft.address);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
